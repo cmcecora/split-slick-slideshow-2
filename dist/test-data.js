@@ -6,7 +6,7 @@
 // Body parts that have actual images in /images folder
 const BODY_PARTS_WITH_IMAGES = [
   'abdomen', 'adrenal-gland', 'appendix', 'bladder', 'bonesjoints', 'brain', 
-  'ear', 'eye', 'gallbladder', 'heart', 'intestines', 'kidneys', 'liver', 
+  'colon', 'ear', 'eye', 'gallbladder', 'heart', 'head', 'intestines', 'kidneys', 'liver', 
   'lungs', 'lymphnode', 'mouthteethgums', 'nose', 'pancreas', 'prostate', 
   'skin', 'skull', 'spleen', 'stomach', 'thyroid', 'uterus'
 ];
@@ -21,7 +21,7 @@ const BODY_SYSTEMS = {
   "Nervous": [
     "Brain", "Spine", "Cervical spine", "Thoracic spine", "Lumbar spine",
     "Pituitary gland", "Pituitary region (sella)", "Eyes", "Orbits (eyes)",
-    "Ears", "Ear", "Retina"
+    "Ears", "Retina"
   ],
   "Respiratory": [
     "Lungs", "Chest", "Nose", "Sinuses", "Esophagus"
@@ -65,7 +65,7 @@ const BODY_SYSTEMS = {
 // Body part categories for accordion grouping
 const BODY_PART_CATEGORIES = {
   "Head & Brain": [
-    "Brain", "Head", "Skull", "Eyes", "Orbits (eyes)", "Ears", "Ear",
+    "Brain", "Head", "Skull", "Eyes", "Ears",
     "Nose", "Sinuses", "Face", "Jaw", "Teeth", "Retina",
     "Pituitary gland", "Pituitary region (sella)", "Temporomandibular joint"
   ],
@@ -511,7 +511,7 @@ const TESTS = [
   { name: "Sleep study", bodyParts: ["Brain"], type: "other" },
   { name: "EEG", bodyParts: ["Brain"], type: "other" },
   { name: "EKG/ECG", bodyParts: ["Heart"], type: "other" },
-  { name: "Audiogram", bodyParts: ["Ear"], type: "other" },
+  { name: "Audiogram", bodyParts: ["Ears"], type: "other" },
   { name: "Slit-lamp exam", bodyParts: ["Eyes"], type: "other" }
 ];
 
@@ -527,8 +527,8 @@ function getBodyPartImage(bodyPart) {
     .replace('adrenalglands', 'adrenal-gland')
     .replace('orbits', 'eye')
     .replace('eyes', 'eye')
+    .replace('ears', 'ear')
     .replace('bones', 'bonesjoints')
-    .replace('colon', 'intestines')
     .replace('lymphnodes', 'lymphnode')
     .replace('brains', 'brain');
   
