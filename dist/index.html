@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Tests Explorer</title>
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Left Column: Body Parts Panel -->
+    <aside class="body-parts-panel">
+      <div class="panel-header">
+        <h1 class="panel-title">Body Parts</h1>
+        <div class="view-toggle">
+          <button class="toggle-btn active" data-view="grouped" title="Grouped by Region">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
+          <button class="toggle-btn" data-view="systems" title="Body Systems">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="5" r="3"></circle>
+              <line x1="12" y1="8" x2="12" y2="14"></line>
+              <path d="M9 14h6l2 7H7l2-7z"></path>
+              <path d="M7 11l-2 3M17 11l2 3"></path>
+            </svg>
+          </button>
+          <button class="toggle-btn" data-view="flat" title="A-Z List">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div class="search-container">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" class="search-input" id="bodyPartSearch" placeholder="Search body parts...">
+      </div>
+
+      <!-- Grouped View (Default) -->
+      <div class="body-parts-content grouped-view" id="groupedView">
+        <!-- Categories will be dynamically generated -->
+      </div>
+
+      <!-- Body Systems View -->
+      <div class="body-parts-content systems-view hidden" id="systemsView">
+        <!-- Body systems will be dynamically generated -->
+      </div>
+
+      <!-- Flat A-Z View -->
+      <div class="body-parts-content flat-view hidden" id="flatView">
+        <!-- All body parts alphabetically -->
+      </div>
+    </aside>
+
+    <!-- Right Column: Tests Grid -->
+    <main class="tests-panel">
+      <div class="tests-header">
+        <div class="active-filter" id="activeFilter">
+          <span class="filter-label">Showing:</span>
+          <span class="filter-value">All Tests</span>
+          <button class="clear-filter hidden" id="clearFilter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="test-count" id="testCount">0 tests</div>
+      </div>
+
+      <div class="tests-grid" id="testsGrid">
+        <!-- Test cards will be dynamically generated -->
+      </div>
+    </main>
+  </div>
+
+  <script src="./test-data.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
