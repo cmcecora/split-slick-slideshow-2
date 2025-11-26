@@ -5,11 +5,11 @@
 
 // Body parts that have actual images in /images folder
 const BODY_PARTS_WITH_IMAGES = [
-  'abdomen', 'adrenal-gland', 'appendix', 'arteryvein', 'bladder', 'bloodvessel', 'bonesjoints', 'brain', 
-  'chest', 'circulatory', 'colon', 'coronaryarteries', 'ear', 'esophagus', 
-  'eye', 'face', 'gallbladder', 'heart', 'head', 'intestines', 'kidneys', 'liver', 
-  'lungs', 'lymphaticsystem', 'lymphnode', 'mouthteethgums', 'neck', 'nose', 'pancreas', 'parathyroid', 'pelvis',
-  'pituitary', 'prostate', 'ribs', 'skin', 'skull', 'spine', 'spleen', 'stomach', 'thyroid', 'uterus'
+  'abdomen', 'adrenal-gland', 'ankle', 'aorta', 'appendix', 'armbone', 'arteryvein', 'bladder', 'bloodvessel', 'bonesjoints', 'brain', 
+  'chest', 'circulatory', 'clavicle', 'coccyx', 'colon', 'coronaryarteries', 'ear', 'elbow', 'esophagus', 
+  'eye', 'face', 'foot', 'gallbladder', 'hand', 'heart', 'head', 'intestines', 'kidneys', 'legbone', 'liver', 
+  'lungs', 'lymphaticsystem', 'lymphnode', 'mammary', 'mouthteethgums', 'neck', 'nose', 'pancreas', 'parathyroid', 'pelvis',
+  'pituitary', 'prostate', 'ribs', 'shoulder', 'skin', 'skull', 'spine', 'spleen', 'sternum', 'stomach', 'thyroid', 'urethra', 'urinarytract', 'uterus', 'wrist'
 ];
 
 // Body Systems - 11 physiological systems grouping
@@ -50,7 +50,7 @@ const BODY_SYSTEMS = {
   ],
   "Skeletal": [
     "Bones", "Joint", "Skull", "Spine", "Cervical spine", "Thoracic spine",
-    "Lumbar spine", "Sacrum", "Coccyx", "Sacroiliac joints", "Ribs", "Sternum",
+    "Lumbar spine", "Sacrum", "Coccyx", "Ribs", "Sternum",
     "Clavicle", "Teeth", "Shoulder", "Elbow",
     "Wrist", "Hand", "Hip", "Knee", "Ankle", "Foot"
   ],
@@ -87,7 +87,7 @@ const BODY_PART_CATEGORIES = {
   ],
   "Spine & Back": [
     "Spine", "Cervical spine", "Thoracic spine", "Lumbar spine", 
-    "Sacrum", "Coccyx", "Sacroiliac joints"
+    "Sacrum", "Coccyx"
   ],
   "Upper Extremities": [
     "Shoulder", "Upper arm", "Upper extremity (arm)", "Elbow", 
@@ -361,7 +361,7 @@ const TESTS = [
   { name: "MRI of pelvis", bodyParts: ["Pelvis"], type: "mri" },
   { name: "MRI of pituitary", bodyParts: ["Pituitary gland"], type: "mri" },
   { name: "MRI of prostate", bodyParts: ["Prostate"], type: "mri" },
-  { name: "MRI of sacroiliac spine", bodyParts: ["Sacroiliac joints", "Spine"], type: "mri" },
+  { name: "MRI of sacroiliac spine", bodyParts: ["Joint", "Spine"], type: "mri" },
   { name: "MRI of shoulder", bodyParts: ["Shoulder"], type: "mri" },
   { name: "MRI of sinus", bodyParts: ["Sinuses"], type: "mri" },
   { name: "MRI of spine", bodyParts: ["Spine"], type: "mri" },
@@ -414,7 +414,7 @@ const TESTS = [
   { name: "Renal scan", bodyParts: ["Kidneys"], type: "nuclear" },
   { name: "Renal venogram", bodyParts: ["Veins", "Kidneys"], type: "angio" },
   { name: "Retina exam", bodyParts: ["Retina"], type: "other" },
-  { name: "Sacroiliac MRI arthrogram", bodyParts: ["Sacroiliac joints"], type: "mri" },
+  { name: "Sacroiliac MRI arthrogram", bodyParts: ["Joint"], type: "mri" },
   { name: "Sestamibi parathyroid scan", bodyParts: ["Parathyroid glands", "Thyroid"], type: "nuclear" },
   { name: "Shockwave lithotripsy for kidney stones", bodyParts: ["Kidneys"], type: "other" },
   { name: "Shoulder CT arthrogram", bodyParts: ["Shoulder"], type: "ct" },
@@ -544,6 +544,16 @@ const BODY_PART_IMAGE_MAP = {
   'bloodvessels': 'bloodvessel',
   'sinuses': 'nose',
   'rectum': 'colon',
+  'sacrum': 'pelvis',
+  'hip': 'pelvis',
+  'knee': 'bonesjoints',
+  'thigh': 'legbone',
+  'upperarm': 'armbone',
+  'systemiccirculation': 'bloodvessel',
+  'breast': 'mammary',
+  'ovaries': 'uterus',
+  'cervix': 'uterus',
+  'vagina': 'uterus',
   'teeth': 'mouthteethgums',
   'wholebodysystemic': 'abdomen',
   'wholebodymetabolic': 'abdomen',
