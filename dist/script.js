@@ -361,6 +361,10 @@
   // ============================================
 
   function formatBodyPartName(name) {
+    // Special case: show "Coronary Arteries" for "Heart (coronary arteries)"
+    if (name === 'Heart (coronary arteries)') {
+      return 'Coronary Arteries';
+    }
     return name
       .replace(/\(.*?\)/g, '')
       .replace(/\s+/g, ' ')

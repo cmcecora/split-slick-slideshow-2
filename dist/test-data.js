@@ -5,37 +5,37 @@
 
 // Body parts that have actual images in /images folder
 const BODY_PARTS_WITH_IMAGES = [
-  'abdomen', 'adrenal-gland', 'appendix', 'bladder', 'bonesjoints', 'brain', 
-  'ear', 'eye', 'gallbladder', 'heart', 'intestines', 'kidneys', 'liver', 
-  'lungs', 'lymphnode', 'mouthteethgums', 'nose', 'pancreas', 'prostate', 
-  'skin', 'skull', 'spleen', 'stomach', 'thyroid', 'uterus'
+  'abdomen', 'adrenal-gland', 'ankle', 'aorta', 'appendix', 'armbone', 'arteryvein', 'bladder', 'bloodvessel', 'bonesjoints', 'brain', 
+  'chest', 'circulatory', 'clavicle', 'coccyx', 'colon', 'coronaryarteries', 'ear', 'elbow', 'esophagus', 
+  'eye', 'face', 'femur', 'foot', 'forearm', 'gallbladder', 'hand', 'heart', 'head', 'intestines', 'kidneys', 'legbone', 'liver', 
+  'lowerextremitymuscle', 'lungs', 'lymphaticsystem', 'lymphnode', 'mammary', 'mouthteethgums', 'neck', 'nose', 'pancreas', 'parathyroid', 'pelvis',
+  'pituitary', 'prostate', 'ribs', 'shoulder', 'skin', 'skull', 'spine', 'spleen', 'sternum', 'stomach', 'thumb', 'thyroid', 'urethra', 'urinarytract', 'upperextremitymuscle', 'uterus', 'wrist'
 ];
 
 // Body Systems - 11 physiological systems grouping
 const BODY_SYSTEMS = {
   "Cardiovascular": [
     "Heart", "Heart (coronary arteries)", "Heart conduction system",
-    "Blood vessels", "Arteries", "Veins", "Aorta", "Systemic circulation",
-    "Iliac arteries", "Mesenteric vessels (intestines)"
+    "Blood vessels", "Arteries", "Veins", "Aorta", "Systemic circulation"
   ],
   "Nervous": [
     "Brain", "Spine", "Cervical spine", "Thoracic spine", "Lumbar spine",
-    "Pituitary gland", "Pituitary region (sella)", "Eyes", "Orbits (eyes)",
-    "Ears", "Ear", "Retina"
+    "Pituitary gland", "Eyes",
+    "Ears", "Retina"
   ],
   "Respiratory": [
     "Lungs", "Chest", "Nose", "Sinuses", "Esophagus"
   ],
   "Endocrine": [
-    "Thyroid", "Parathyroid glands", "Pituitary gland", "Pituitary region (sella)",
+    "Thyroid", "Parathyroid glands", "Pituitary gland",
     "Adrenal glands", "Pancreas"
   ],
   "Digestive": [
     "Esophagus", "Stomach", "Intestines", "Colon", "Liver", "Gallbladder",
-    "Pancreas", "Appendix", "Rectum", "Biliary system", "Abdomen"
+    "Pancreas", "Appendix", "Rectum", "Abdomen"
   ],
   "Excretory": [
-    "Kidneys", "Bladder", "Urinary tract", "Urinary system", "Urethra"
+    "Kidneys", "Bladder", "Urinary tract", "Urethra"
   ],
   "Immune": [
     "Lymph nodes", "Lymphatic system", "Spleen"
@@ -50,8 +50,8 @@ const BODY_SYSTEMS = {
   ],
   "Skeletal": [
     "Bones", "Joint", "Skull", "Spine", "Cervical spine", "Thoracic spine",
-    "Lumbar spine", "Sacrum", "Coccyx", "Sacroiliac joints", "Ribs", "Sternum",
-    "Clavicle", "Jaw", "Teeth", "Temporomandibular joint", "Shoulder", "Elbow",
+    "Lumbar spine", "Sacrum", "Coccyx", "Ribs", "Sternum",
+    "Clavicle", "Teeth", "Shoulder", "Elbow",
     "Wrist", "Hand", "Hip", "Knee", "Ankle", "Foot"
   ],
   "Reproductive Female": [
@@ -65,9 +65,9 @@ const BODY_SYSTEMS = {
 // Body part categories for accordion grouping
 const BODY_PART_CATEGORIES = {
   "Head & Brain": [
-    "Brain", "Head", "Skull", "Eyes", "Orbits (eyes)", "Ears", "Ear",
-    "Nose", "Sinuses", "Face", "Jaw", "Teeth", "Retina",
-    "Pituitary gland", "Pituitary region (sella)", "Temporomandibular joint"
+    "Brain", "Head", "Skull", "Eyes", "Ears",
+    "Nose", "Sinuses", "Face", "Teeth", "Retina",
+    "Pituitary gland"
   ],
   "Neck & Throat": [
     "Neck", "Thyroid", "Parathyroid glands", "Esophagus"
@@ -79,15 +79,15 @@ const BODY_PART_CATEGORIES = {
   "Abdomen": [
     "Abdomen", "Liver", "Gallbladder", "Pancreas", "Spleen", 
     "Stomach", "Kidneys", "Adrenal glands", "Intestines",
-    "Colon", "Appendix", "Biliary system", "Mesenteric vessels (intestines)"
+    "Colon", "Appendix"
   ],
   "Pelvis & Reproductive": [
     "Pelvis", "Bladder", "Prostate", "Uterus", "Ovaries", 
-    "Cervix", "Rectum", "Vagina", "Urethra", "Urinary tract", "Urinary system"
+    "Cervix", "Rectum", "Vagina", "Urethra", "Urinary tract"
   ],
   "Spine & Back": [
     "Spine", "Cervical spine", "Thoracic spine", "Lumbar spine", 
-    "Sacrum", "Coccyx", "Sacroiliac joints"
+    "Sacrum", "Coccyx"
   ],
   "Upper Extremities": [
     "Shoulder", "Upper arm", "Upper extremity (arm)", "Elbow", 
@@ -95,7 +95,7 @@ const BODY_PART_CATEGORIES = {
   ],
   "Lower Extremities": [
     "Hip", "Femur (thigh)", "Thigh", "Knee", "Lower extremity (leg)",
-    "Ankle", "Foot", "Iliac arteries"
+    "Ankle", "Foot"
   ],
   "Vascular": [
     "Blood vessels", "Arteries", "Veins", "Aorta", "Systemic circulation"
@@ -139,7 +139,7 @@ const TESTS = [
   { name: "Angiogram", bodyParts: ["Blood vessels"], type: "angio" },
   { name: "Angiogram of abdominal aorta", bodyParts: ["Blood vessels", "Abdomen", "Aorta"], type: "angio" },
   { name: "Angiogram of aorta", bodyParts: ["Blood vessels", "Aorta"], type: "angio" },
-  { name: "Angiogram of aortoiliac artery", bodyParts: ["Blood vessels", "Arteries", "Iliac arteries"], type: "angio" },
+  { name: "Angiogram of aortoiliac artery", bodyParts: ["Blood vessels", "Arteries"], type: "angio" },
   { name: "Angiogram of arm", bodyParts: ["Blood vessels"], type: "angio" },
   { name: "Angiogram of carotid", bodyParts: ["Blood vessels"], type: "angio" },
   { name: "Angiogram of carotid, vertebral and cerebral arteries", bodyParts: ["Blood vessels", "Brain"], type: "angio" },
@@ -179,7 +179,7 @@ const TESTS = [
   { name: "Carotid ultrasound exam", bodyParts: ["Arteries", "Neck"], type: "ultrasound" },
   { name: "Cerebral angiography", bodyParts: ["Brain"], type: "angio" },
   { name: "Chemical exfoliation for acne", bodyParts: ["Skin", "Face"], type: "other" },
-  { name: "Cholangiogram", bodyParts: ["Blood vessels", "Biliary system"], type: "xray" },
+  { name: "Cholangiogram", bodyParts: ["Blood vessels"], type: "xray" },
   { name: "Colonoscopy", bodyParts: ["Colon"], type: "other" },
   { name: "Colonoscopy by video capsule", bodyParts: ["Colon"], type: "other" },
   { name: "Computed tomography angiogram", bodyParts: ["Blood vessels"], type: "ct" },
@@ -196,7 +196,7 @@ const TESTS = [
   { name: "CT guided biopsy of pancreas", bodyParts: ["Pancreas"], type: "ct" },
   { name: "CT guided biopsy of superficial lymph nodes", bodyParts: ["Lymph nodes"], type: "ct" },
   { name: "CT guided drainage of neck abscess", bodyParts: ["Neck"], type: "ct" },
-  { name: "CT guided external biliary drainage", bodyParts: ["Biliary system"], type: "ct" },
+  { name: "CT guided external biliary drainage", bodyParts: [], type: "ct" },
   { name: "CT heart scan", bodyParts: ["Heart"], type: "ct" },
   { name: "CT myelogram", bodyParts: ["Spine"], type: "ct" },
   { name: "CT of abdomen", bodyParts: ["Abdomen"], type: "ct" },
@@ -303,8 +303,8 @@ const TESTS = [
   { name: "Lymphangiogram", bodyParts: ["Blood vessels", "Lymphatic system"], type: "angio" },
   { name: "Lymphoscintigraphy", bodyParts: ["Lymphatic system"], type: "nuclear" },
   { name: "Mammogram", bodyParts: ["Breast"], type: "xray" },
-  { name: "Maxillofacial CT", bodyParts: ["Face", "Jaw"], type: "ct" },
-  { name: "Mesenteric arteriography", bodyParts: ["Arteries", "Mesenteric vessels (intestines)"], type: "angio" },
+  { name: "Maxillofacial CT", bodyParts: ["Face"], type: "ct" },
+  { name: "Mesenteric arteriography", bodyParts: ["Arteries"], type: "angio" },
   { name: "MRA of abdomen", bodyParts: ["Abdomen"], type: "mri" },
   { name: "MRA of brain", bodyParts: ["Brain"], type: "mri" },
   { name: "MRA of brain with contrast", bodyParts: ["Brain"], type: "mri" },
@@ -361,13 +361,13 @@ const TESTS = [
   { name: "MRI of pelvis", bodyParts: ["Pelvis"], type: "mri" },
   { name: "MRI of pituitary", bodyParts: ["Pituitary gland"], type: "mri" },
   { name: "MRI of prostate", bodyParts: ["Prostate"], type: "mri" },
-  { name: "MRI of sacroiliac spine", bodyParts: ["Sacroiliac joints", "Spine"], type: "mri" },
+  { name: "MRI of sacroiliac spine", bodyParts: ["Joint", "Spine"], type: "mri" },
   { name: "MRI of shoulder", bodyParts: ["Shoulder"], type: "mri" },
   { name: "MRI of sinus", bodyParts: ["Sinuses"], type: "mri" },
   { name: "MRI of spine", bodyParts: ["Spine"], type: "mri" },
   { name: "MRI of thoracic spine", bodyParts: ["Thoracic spine", "Spine"], type: "mri" },
   { name: "MRI of thumb", bodyParts: ["Thumb"], type: "mri" },
-  { name: "MRI of TMJ", bodyParts: ["Temporomandibular joint"], type: "mri" },
+  { name: "MRI of TMJ", bodyParts: ["Face"], type: "mri" },
   { name: "MRI of upper arm", bodyParts: ["Upper arm"], type: "mri" },
   { name: "MRI of upper extremity", bodyParts: ["Upper extremity (arm)"], type: "mri" },
   { name: "MRI of whole body", bodyParts: ["Whole body"], type: "mri" },
@@ -414,7 +414,7 @@ const TESTS = [
   { name: "Renal scan", bodyParts: ["Kidneys"], type: "nuclear" },
   { name: "Renal venogram", bodyParts: ["Veins", "Kidneys"], type: "angio" },
   { name: "Retina exam", bodyParts: ["Retina"], type: "other" },
-  { name: "Sacroiliac MRI arthrogram", bodyParts: ["Sacroiliac joints"], type: "mri" },
+  { name: "Sacroiliac MRI arthrogram", bodyParts: ["Joint"], type: "mri" },
   { name: "Sestamibi parathyroid scan", bodyParts: ["Parathyroid glands", "Thyroid"], type: "nuclear" },
   { name: "Shockwave lithotripsy for kidney stones", bodyParts: ["Kidneys"], type: "other" },
   { name: "Shoulder CT arthrogram", bodyParts: ["Shoulder"], type: "ct" },
@@ -424,7 +424,7 @@ const TESTS = [
   { name: "Thigh MRI", bodyParts: ["Thigh"], type: "mri" },
   { name: "Thyroid nuclear scan", bodyParts: ["Thyroid"], type: "nuclear" },
   { name: "Thyroid scan", bodyParts: ["Thyroid"], type: "nuclear" },
-  { name: "TMJ MRI arthrogram", bodyParts: ["Temporomandibular joint"], type: "mri" },
+  { name: "TMJ MRI arthrogram", bodyParts: ["Face"], type: "mri" },
   { name: "Transabdominal ultrasound", bodyParts: ["Abdomen"], type: "ultrasound" },
   { name: "Transesophageal echocardiogram", bodyParts: ["Heart", "Esophagus"], type: "ultrasound" },
   { name: "Transrectal ultrasound", bodyParts: ["Rectum"], type: "ultrasound" },
@@ -511,7 +511,7 @@ const TESTS = [
   { name: "Sleep study", bodyParts: ["Brain"], type: "other" },
   { name: "EEG", bodyParts: ["Brain"], type: "other" },
   { name: "EKG/ECG", bodyParts: ["Heart"], type: "other" },
-  { name: "Audiogram", bodyParts: ["Ear"], type: "other" },
+  { name: "Audiogram", bodyParts: ["Ears"], type: "other" },
   { name: "Slit-lamp exam", bodyParts: ["Eyes"], type: "other" }
 ];
 
@@ -520,21 +520,65 @@ const ALL_BODY_PARTS = [...new Set(
   Object.values(BODY_PART_CATEGORIES).flat()
 )].sort();
 
+// Direct mapping from normalized body part names to image file names
+const BODY_PART_IMAGE_MAP = {
+  'adrenalglands': 'adrenal-gland',
+  'orbits': 'eye',
+  'orbitseyes': 'eye',
+  'eyes': 'eye',
+  'ears': 'ear',
+  'bones': 'bonesjoints',
+  'joint': 'bonesjoints',
+  'lymphnodes': 'lymphnode',
+  'brains': 'brain',
+  'heartconductionsystem': 'circulatory',
+  'heartcoronaryarteries': 'coronaryarteries',
+  'parathyroidglands': 'parathyroid',
+  'pituitarygland': 'pituitary',
+  'cervicalspine': 'spine',
+  'thoracicspine': 'spine',
+  'lumbarspine': 'spine',
+  'retina': 'eye',
+  'arteries': 'arteryvein',
+  'veins': 'arteryvein',
+  'bloodvessels': 'bloodvessel',
+  'sinuses': 'nose',
+  'rectum': 'colon',
+  'sacrum': 'pelvis',
+  'hip': 'pelvis',
+  'knee': 'bonesjoints',
+  'thigh': 'legbone',
+  'femurthigh': 'femur',
+  'upperarm': 'armbone',
+  'upperextremityarm': 'upperextremitymuscle',
+  'lowerextremityleg': 'lowerextremitymuscle',
+  'systemiccirculation': 'bloodvessel',
+  'breast': 'mammary',
+  'ovaries': 'uterus',
+  'cervix': 'uterus',
+  'vagina': 'uterus',
+  'teeth': 'mouthteethgums',
+  'wholebodysystemic': 'abdomen',
+  'wholebodymetabolic': 'abdomen',
+  'wholebody': 'abdomen'
+};
+
 // Map body part to its image file (if exists)
 function getBodyPartImage(bodyPart) {
-  const normalized = bodyPart.toLowerCase()
-    .replace(/[^a-z0-9]/g, '')
-    .replace('adrenalglands', 'adrenal-gland')
-    .replace('orbits', 'eye')
-    .replace('eyes', 'eye')
-    .replace('bones', 'bonesjoints')
-    .replace('colon', 'intestines')
-    .replace('lymphnodes', 'lymphnode')
-    .replace('brains', 'brain');
+  // First normalize: lowercase and remove non-alphanumeric characters
+  const normalized = bodyPart.toLowerCase().replace(/[^a-z0-9]/g, '');
   
+  // Check direct mapping first (exact match)
+  const mappedName = BODY_PART_IMAGE_MAP[normalized];
+  if (mappedName && BODY_PARTS_WITH_IMAGES.includes(mappedName)) {
+    return `./images/${mappedName}.png`;
+  }
+  
+  // Check if normalized name directly matches an image
   if (BODY_PARTS_WITH_IMAGES.includes(normalized)) {
     return `./images/${normalized}.png`;
   }
+  
   return null;
 }
 
