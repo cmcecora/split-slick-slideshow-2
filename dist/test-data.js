@@ -7,9 +7,9 @@
 const BODY_PARTS_WITH_IMAGES = [
   'abdomen', 'adrenal-gland', 'ankle', 'aorta', 'appendix', 'armbone', 'arteryvein', 'bladder', 'bloodvessel', 'bonesjoints', 'brain', 
   'chest', 'circulatory', 'clavicle', 'coccyx', 'colon', 'coronaryarteries', 'ear', 'elbow', 'esophagus', 
-  'eye', 'face', 'foot', 'gallbladder', 'hand', 'heart', 'head', 'intestines', 'kidneys', 'legbone', 'liver', 
-  'lungs', 'lymphaticsystem', 'lymphnode', 'mammary', 'mouthteethgums', 'neck', 'nose', 'pancreas', 'parathyroid', 'pelvis',
-  'pituitary', 'prostate', 'ribs', 'shoulder', 'skin', 'skull', 'spine', 'spleen', 'sternum', 'stomach', 'thyroid', 'urethra', 'urinarytract', 'uterus', 'wrist'
+  'eye', 'face', 'femur', 'foot', 'forearm', 'gallbladder', 'hand', 'heart', 'head', 'intestines', 'kidneys', 'legbone', 'liver', 
+  'lowerextremitymuscle', 'lungs', 'lymphaticsystem', 'lymphnode', 'mammary', 'mouthteethgums', 'neck', 'nose', 'pancreas', 'parathyroid', 'pelvis',
+  'pituitary', 'prostate', 'ribs', 'shoulder', 'skin', 'skull', 'spine', 'spleen', 'sternum', 'stomach', 'thumb', 'thyroid', 'urethra', 'urinarytract', 'upperextremitymuscle', 'uterus', 'wrist'
 ];
 
 // Body Systems - 11 physiological systems grouping
@@ -548,7 +548,10 @@ const BODY_PART_IMAGE_MAP = {
   'hip': 'pelvis',
   'knee': 'bonesjoints',
   'thigh': 'legbone',
+  'femurthigh': 'femur',
   'upperarm': 'armbone',
+  'upperextremityarm': 'upperextremitymuscle',
+  'lowerextremityleg': 'lowerextremitymuscle',
   'systemiccirculation': 'bloodvessel',
   'breast': 'mammary',
   'ovaries': 'uterus',
