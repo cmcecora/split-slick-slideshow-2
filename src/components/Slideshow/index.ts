@@ -1,0 +1,2 @@
+export { SplitSlideshow } from './SplitSlideshow'
+
