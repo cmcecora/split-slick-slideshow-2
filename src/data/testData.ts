@@ -863,6 +863,12 @@ PROCEDURE_IMAGE_FILES.forEach(filename => {
 export function getProcedureImage(testName: string): string | null {
   const normalized = normalizeTestName(testName)
   
+  // Special mapping override: use "Angiogram of carotid.png" for "Angiogram of carotid, vertebral and cerebral arteries"
+  if (normalized === 'angiogram of carotid, vertebral and cerebral arteries' || 
+      normalized.includes('angiogram of carotid, vertebral and cerebral arteries')) {
+    return `/images/procedure_images/${encodeURIComponent('Angiogram of carotid')}.png`
+  }
+  
   // Check for exact match first
   if (PROCEDURE_IMAGE_MAP[normalized]) {
     return `/images/procedure_images/${encodeURIComponent(PROCEDURE_IMAGE_MAP[normalized])}.png`
