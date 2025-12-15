@@ -16,10 +16,16 @@
   const clearFilterBtn = document.getElementById('clearFilter');
   const testCount = document.getElementById('testCount');
   const viewToggleButtons = document.querySelectorAll('.toggle-btn');
+  const tabNavBar = document.getElementById('tabNavBar');
+  const tabNavItems = document.querySelectorAll('.tab-nav-item');
+  const testsFilterBar = document.getElementById('testsFilterBar');
+  const testsFilterBtns = document.querySelectorAll('.tests-filter-btn');
 
   // State
   let selectedBodyPart = null;
   let currentView = 'grouped';
+  let currentTab = 'tests';
+  let currentTestFilter = 'all'; // 'all', 'imaging', or 'lab'
 
   // ============================================
   // Initialization
@@ -243,6 +249,20 @@
       clearSelection();
     });
 
+    // Tab navigation
+    tabNavItems.forEach(tab => {
+      tab.addEventListener('click', () => {
+        switchTab(tab.dataset.tab);
+      });
+    });
+
+    // Tests filter (Lab/Imaging)
+    testsFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterTestsByType(btn.dataset.testType);
+      });
+    });
+
     // Expand first category by default
     const firstHeader = groupedView.querySelector('.category-header');
     if (firstHeader) {
@@ -272,9 +292,25 @@
     activeFilter.querySelector('.filter-value').textContent = formatBodyPartName(bodyPart);
     clearFilterBtn.classList.remove('hidden');
 
+    // Show tab navigation bar
+    tabNavBar.classList.remove('hidden');
+
+    // Show tests filter bar if on tests tab
+    if (currentTab === 'tests') {
+      testsFilterBar.classList.remove('hidden');
+    }
+
     // Filter tests with animation
-    const filteredTests = getTestsForBodyPart(bodyPart);
-    
+    let filteredTests = getTestsForBodyPart(bodyPart);
+
+    // Apply test type filter if not 'all'
+    if (currentTestFilter === 'imaging') {
+      const imagingTypes = ['ct', 'mri', 'ultrasound', 'xray', 'pet', 'nuclear', 'angio'];
+      filteredTests = filteredTests.filter(test => imagingTypes.includes(test.type));
+    } else if (currentTestFilter === 'lab') {
+      filteredTests = filteredTests.filter(test => test.type === 'lab');
+    }
+
     // Animate out current cards
     const currentCards = testsGrid.querySelectorAll('.test-card');
     currentCards.forEach(card => card.classList.add('hiding'));
@@ -291,7 +327,13 @@
     });
     activeFilter.querySelector('.filter-value').textContent = 'All Tests';
     clearFilterBtn.classList.add('hidden');
-    
+
+    // Hide tab navigation bar and reset to tests tab
+    tabNavBar.classList.add('hidden');
+    testsFilterBar.classList.add('hidden');
+    switchTab('tests');
+    filterTestsByType('all');
+
     const currentCards = testsGrid.querySelectorAll('.test-card');
     currentCards.forEach(card => card.classList.add('hiding'));
 
@@ -302,7 +344,7 @@
 
   function switchView(view) {
     currentView = view;
-    
+
     viewToggleButtons.forEach(btn => {
       btn.classList.toggle('active', btn.dataset.view === view);
     });
@@ -319,6 +361,56 @@
       systemsView.classList.remove('hidden');
     } else {
       flatView.classList.remove('hidden');
+    }
+  }
+
+  function switchTab(tab) {
+    currentTab = tab;
+
+    // Update active tab styling
+    tabNavItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.tab === tab);
+    });
+
+    // Show/hide tests filter bar based on tab
+    if (tab === 'tests' && selectedBodyPart) {
+      testsFilterBar.classList.remove('hidden');
+    } else {
+      testsFilterBar.classList.add('hidden');
+    }
+
+    // For now, only the Tests tab has content
+    // Future tabs (Diseases, Symptoms, Procedures, Treatments, Food) can be implemented later
+  }
+
+  function filterTestsByType(testType) {
+    currentTestFilter = testType;
+
+    // Update active filter button styling
+    testsFilterBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.testType === testType);
+    });
+
+    // Filter and re-render tests
+    if (selectedBodyPart) {
+      let filteredTests = getTestsForBodyPart(selectedBodyPart);
+
+      if (testType === 'imaging') {
+        // Imaging tests include: ct, mri, ultrasound, xray, pet, nuclear, angio
+        const imagingTypes = ['ct', 'mri', 'ultrasound', 'xray', 'pet', 'nuclear', 'angio'];
+        filteredTests = filteredTests.filter(test => imagingTypes.includes(test.type));
+      } else if (testType === 'lab') {
+        // Lab tests - will be added later, for now filter by 'lab' type
+        filteredTests = filteredTests.filter(test => test.type === 'lab');
+      }
+      // 'all' shows all tests (no additional filtering)
+
+      const currentCards = testsGrid.querySelectorAll('.test-card');
+      currentCards.forEach(card => card.classList.add('hiding'));
+
+      setTimeout(() => {
+        renderTests(filteredTests, true);
+      }, 200);
     }
   }
 
