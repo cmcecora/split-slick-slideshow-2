@@ -1,0 +1,210 @@
+/* ============================================
+   Split Slideshow Styles
+   ============================================ */
+
+.split-slideshow {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #110101;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.split-slideshow:active {
+  cursor: grabbing;
+}
+
+/* Back button */
+.slideshow-back-btn {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slideshow-back-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Slideshow containers */
+.slideshow {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slideshow .slider {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+.slideshow .slider * {
+  outline: none;
+}
+
+.slideshow .item {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.slideshow .item img {
+  min-width: 101%;
+  min-height: 101%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* Navigation dots */
+.slick-dots {
+  position: fixed;
+  z-index: 100;
+  width: 40px;
+  height: auto;
+  bottom: auto;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  left: auto;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.slick-dots button {
+  position: relative;
+  width: 40px;
+  height: 15px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.slick-dots button span {
+  content: '';
+  background: #fff;
+  height: 2px;
+  width: 20px;
+  border-radius: 0;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
+  opacity: 0.6;
+  display: block;
+}
+
+.slick-dots button.active span {
+  width: 40px;
+  opacity: 1;
+}
+
+.slick-dots button:hover span {
+  opacity: 0.9;
+}
+
+/* Right slideshow - clips to left half */
+.slideshow.slideshow-right {
+  left: 0;
+  z-index: 1;
+  width: 50vw;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.slideshow.slideshow-right .slider {
+  left: 0;
+  position: absolute;
+}
+
+/* Left slideshow - full width but right half shows through */
+.slideshow.slideshow-left {
+  z-index: 2;
+  clip-path: inset(0 0 0 50%);
+}
+
+/* Text overlay */
+.slideshow-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 80px;
+  width: 100vw;
+  text-align: center;
+  color: #fff;
+  font-family: 'Roboto Condensed', 'Space Grotesk', sans-serif;
+  font-weight: 100;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  line-height: 0.8;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slideshow-text .text-slider {
+  height: 100%;
+}
+
+.slideshow-text .text-item {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .slideshow-text {
+    font-size: 40px;
+    letter-spacing: 10px;
+  }
+  
+  .slideshow-back-btn {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+  
+  .slideshow-back-btn span {
+    display: none;
+  }
+}
+
