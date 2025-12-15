@@ -617,6 +617,267 @@ export function formatBodyPartName(name: string): string {
     .trim()
 }
 
+// Procedure images - all 714 image filenames from procedure_images folder
+export const PROCEDURE_IMAGE_FILES: string[] = [
+  "AAA repair", "Accent laser", "Acid reflux surgery", "Acne laser therapy", "Acne surgery",
+  "Adjuvant chemotherapy", "Adrenal scan", "Air contrast enema", "Angiogram of abdominal aorta",
+  "Angiogram of aorta", "Angiogram of aortoiliac artery", "Angiogram of arm",
+  "Angiogram of carotid, vertebral and cerebral arteries", "Angiogram of carotid",
+  "Angiogram of coronary arteries", "Angiogram of leg", "Angiogram of pulmonary artery",
+  "Angiogram of renal arteries", "Angiogram", "Angiography", "Angioplasty",
+  "Ankle MRI arthrogram", "Ankle MRI with contrast", "Ankle fracture surgery",
+  "Aorta and bilateral iliofemoral runoff CTA", "Argon laser iridoplasty", "Arteriography",
+  "Arthrodesis", "BVAD", "Balloon angioplasty", "Barium enema", "Birth defect correction",
+  "Bitewing radiograph", "Blood pressure", "Bone scintigraphy", "CT cisternogram",
+  "CT cystogram with and without contrast", "CT cystogram with contrast", "CT cystogram without contrast",
+  "CT fistulogram or sinogram", "CT guided abscess drainage", "CT guided biopsy of abdomen",
+  "CT guided biopsy of bone", "CT guided biopsy of kidney", "CT guided biopsy of lung or mediastinum",
+  "CT guided biopsy of muscle or soft tissue", "CT guided biopsy of pancreas",
+  "CT guided biopsy of pleura", "CT guided biopsy of superficial lymph nodes", "CT guided biopsy",
+  "CT guided drainage of appendiceal abscess", "CT guided drainage of hematoma or fluid collection",
+  "CT guided drainage of neck abscess or hematoma", "CT guided drainage of pancreatic pseudocyst",
+  "CT guided drainage of retroperitoneal abscess", "CT guided drainage of subphrenic abscess",
+  "CT guided drainage", "CT guided external biliary drainage", "CT guided fine needle aspiration",
+  "CT guided hepatic drainage", "CT guided internal biliary drainage", "CT guided peritoneal drainage",
+  "CT guided thoracentesis", "CT guided vertebroplasty", "CT heart scan", "CT myelogram",
+  "CT of abdomen and pelvis with contast", "CT of abdomen and pelvis without contrast",
+  "CT of abdomen", "CT of adrenals", "CT of ankle", "CT of brain with contrast", "CT of brain",
+  "CT of cervical spine with contrast", "CT of cervical spine without contrast",
+  "CT of chest and abdomen with contrast", "CT of chest and abdomen without contrast",
+  "CT of chest and abdomen", "CT of chest with contrast", "CT of chest without contrast",
+  "CT of chest, abdomen and pelvis", "CT of chest", "CT of femur", "CT of foot", "CT of forearm",
+  "CT of groin", "CT of hand", "CT of head and neck", "CT of head with contrast",
+  "CT of head without contrast", "CT of head", "CT of hip", "CT of joint", "CT of leg",
+  "CT of lower extremity with and without contrast", "CT of lower extremity with contrast",
+  "CT of lower extremity without contrast", "CT of lumbar spine with contrast",
+  "CT of lumbar spine without contrast", "CT of lumbosacral spine", "CT of neck with and without contrast",
+  "CT of neck without contrast", "CT of neck", "CT of orbits", "CT of pelvis with and without contrast",
+  "CT of pelvis with contrast", "CT of pelvis without contrast", "CT of pelvis", "CT of pituitary",
+  "CT of sella and IAC", "CT of shoulder", "CT of sinus with contrast", "CT of sinus without contrast",
+  "CT of sinus", "CT of spine", "CT of thoracic spine with and without contrast",
+  "CT of thoracic spine with contrast", "CT of thoracic spine without contrast", "CT of thumb",
+  "CT of upper arm", "CT of upper extremity with and without contrast",
+  "CT of upper extremity with contrast", "CT of upper extremity without contrast",
+  "CT of whole body with contrast", "CT of wrist", "CT pyelogram", "CT scan", "CT urogram with contrast",
+  "CT urogram", "CTA of abdomen and pelvis", "CTA of abdomen", "CTA of brain",
+  "CTA of chest and abdomen", "CTA of chest", "CTA of coronary artery", "CTA of head",
+  "CTA of kidney", "CTA of lower extremity", "CTA of neck", "CTA of pelvis", "CTA of torso",
+  "CTA of upper extremity", "CTA", "Cancer radiation", "Cardiac CT Scan", "Cardiac MRI with contrast",
+  "Cardiac MRI without contrast", "Cardiac echo", "Cardiac electrophysiology", "Cardiac function MRI",
+  "Cardiac morphology MRI with contrast", "Cardiac morphology MRI without contrast",
+  "Cardiac velocity MRI flow map", "Cardioversion", "Carotid artery ultrasound",
+  "Carotid ultrasound exam", "Cerebral angiography", "Cervical laminectomy",
+  "Chemical exfoliation for acne", "Cholangiogram", "Choledochal stent", "Colonoscopy by video capsule",
+  "Colonoscopy", "Colonscopy", "Computed tomography angiogram", "Computed tomography",
+  "Coronal CT scan of sinus", "Coronary angiogram", "Coronary angioplasty",
+  "Ct guided CSF leak repair", "Cystogram", "Cystometrogram", "Cystoscopy with retrograde pyelography",
+  "Deep brain stimulation", "Dental Xrays", "Diagnostic laparoscopy", "Diagnostic procedure ENT",
+  "Diagnostic procedure GI liver", "Diagnostic procedure GI", "Diagnostic procedure IR kidney",
+  "Diagnostic procedure eye", "Diagnostic procedure heart", "Diagnostic procedure joint elbow",
+  "Diagnostic procedure joint knee", "Diagnostic procedure kidney", "Diagnostic procedure lung-airways",
+  "Diagnostic procedure lung", "Diagnostic procedure muscle", "Diagnostic procedure nerve",
+  "Diagnostic procedure pregnancy related", "Diagnostic procedure radiology GI",
+  "Diagnostic procedure skin", "Diagnostic procedure spine", "Diagnostic procedure thyroid",
+  "Diagnostic procedure urology", "Diagnostic ultrasound", "Digital mammogram", "Doppler test on baby",
+  "Doppler ultrasound exam of arm or leg", "Doppler ultrasound of middle cerebral artery of fetus",
+  "Doppler ultrasound of newborn head", "Doppler ultrasound of umbilical artery", "Doppler ultrasound",
+  "Doppler velocimetry", "ECHO", "EGD", "EMDA", "EVLT", "Echocardiogram of fetus", "Egg freezing",
+  "Elbow MRI arthrogram", "Electromyography", "Electrophysiology study", "Electroretinography",
+  "Embryo transfer", "Endoscopic gastrointestinal ultrasound", "Endoscopic retrograde cholangiopancreatography",
+  "Endoscopic ultrasound", "Esophagoscopy", "Exercise stress test", "External beam radiation therapy",
+  "Eye ultrasound", "Facial Xray", "Fetal ultrasound", "Fine needle aspiration", "Flexible sigmoidoscopy",
+  "Fluorescein angiogram of retina", "Fluorescein angiogram", "Fluorescein angiography",
+  "Fluorodeoxyglucose PET scan", "Fluoroscopy", "Functional MRI", "Gallbladder Xray",
+  "Gallbladder radionuclide scan", "Gallium scan for infection", "Gallium scan for tumor",
+  "Glycolic acid peel", "Gonioscopy", "Head and neck radiation therapy", "Heart angiogram",
+  "Helical computed tomography", "Hida scan", "High resolution CT of brain", "High resolution CT of chest",
+  "High resolution CT", "Hip MRI arthrogram", "Hysterosalpingogram", "Imaging", "Immunotherapy",
+  "In Vitro Fertilization", "Internal fetal monitoring", "Intravenous pyelogram", "KUB",
+  "Kidney gallium scan", "Kidney scan", "Knee MRI arthrogram", "LVAD", "Laser peripheral iridotomy",
+  "Laser therapy", "Laser treatment of leg veins", "Lithotripsy", "Lumbar myelogram",
+  "Lung gallium scan", "Lung radiation", "Lung screening CT", "Lung ventilation perfusion scan",
+  "Lymphangiogram", "Lymphoscintigraphy", "MIBG scintiscan", "MRA of abdomen with and without contrast",
+  "MRA of abdomen with contrast", "MRA of abdomen without contrast", "MRA of brain with and without contrast",
+  "MRA of brain with contrast", "MRA of brain without contrast",
+  "MRA of carotid and vertebral artery with and without contrast",
+  "MRA of carotid and vertebral artery with contrast", "MRA of carotid and vertebral artery without contrast",
+  "MRA of cervical spine", "MRA of chest with and without contrast", "MRA of chest with contrast",
+  "MRA of chest without contrast", "MRA of kidney with and without contrast", "MRA of kidney with contrast",
+  "MRA of liver with and without contrast", "MRA of liver with contrast", "MRA of liver without contrast",
+  "MRA of lower extremity with and without contrast", "MRA of lower extremity with contrast",
+  "MRA of lower extremity without contrast", "MRA of lumbar spine", "MRA of pelvis with and without contrast",
+  "MRA of pelvis without contrast", "MRA of thoracic spine", "MRA of upper extremity", "MRCP",
+  "MRI and MRA of abdomen with and without contrast", "MRI and MRA of brain with contrast",
+  "MRI and MRA of brain without contrast", "MRI and MRA of chest with reconstruction",
+  "MRI and MRA of pelvis with and without contrast", "MRI arthrogram of wrist", "MRI arthrogram",
+  "MRI guided breast biopsy", "MRI of IAC with and without contrast", "MRI of IAC without contrast",
+  "MRI of TMJ", "MRI of abdomen and pelvis", "MRI of abdomen with and without contrast",
+  "MRI of abdomen with contrast", "MRI of abdomen without contrast", "MRI of abdomen",
+  "MRI of adrenals", "MRI of ankle with contrast", "MRI of ankle without contrast", "MRI of ankle",
+  "MRI of back without contrast", "MRI of bone marrow supply", "MRI of brachial plexus",
+  "MRI of brain and IAC with contrast", "MRI of brain and orbits with contrast",
+  "MRI of brain and pituitary with contrast", "MRI of brain and spinal cord", "MRI of brain with contrast",
+  "MRI of brain without contrast", "MRI of brain", "MRI of breast with contrast",
+  "MRI of breast with wire localization", "MRI of breast without contrast", "MRI of breast",
+  "MRI of calf with contrast", "MRI of calf without contrast", "MRI of cervical spine with contrast",
+  "MRI of cervical spine without contrast", "MRI of chest with contrast", "MRI of chest without contrast",
+  "MRI of chest", "MRI of elbow with and without contrast", "MRI of elbow with contrast",
+  "MRI of elbow without contrast", "MRI of entire spine with and without contrast",
+  "MRI of entire spine with contrast", "MRI of entire spine without contrast", "MRI of femur with contrast",
+  "MRI of femur", "MRI of fetus", "MRI of foot with contrast", "MRI of foot without contrast",
+  "MRI of foot", "MRI of forearm with contrast", "MRI of forearm", "MRI of groin",
+  "MRI of hand with and without contrast", "MRI of hand without contrast", "MRI of hand",
+  "MRI of head and neck", "MRI of head", "MRI of heart", "MRI of hip with and without contrast",
+  "MRI of hip with contrast", "MRI of joint", "MRI of knee with and without contrast",
+  "MRI of knee with contrast", "MRI of knee without contrast", "MRI of leg with contrast", "MRI of leg",
+  "MRI of lower extremity joint without contrast", "MRI of lower extremity without contrast",
+  "MRI of lumbar spine with and without contrast", "MRI of lumbar spine with contrast",
+  "MRI of lumbar spine without contrast", "MRI of lumbosacral spine with contrast",
+  "MRI of lumbosacral spine", "MRI of neck soft tissue with and without contrast",
+  "MRI of neck soft tissue with contrast", "MRI of neck soft tissue without contrast",
+  "MRI of neck without contrast", "MRI of neck", "MRI of orbits with contrast",
+  "MRI of orbits without contrast", "MRI of orbits", "MRI of pelvis with and without contrast",
+  "MRI of pelvis without contrast", "MRI of pelvis", "MRI of pituitary with and without contrast",
+  "MRI of pituitary without contrast", "MRI of prostate with and without contrast",
+  "MRI of prostate with contrast", "MRI of prostate without contrast",
+  "MRI of sacroiliac spine with and without contrast", "MRI of sacroiliac spine with contrast",
+  "MRI of sacroiliac spine without contrast", "MRI of shoulder with and without contrast",
+  "MRI of shoulder with contrast", "MRI of shoulder without contrast", "MRI of shoulder",
+  "MRI of sinus with contrast", "MRI of sinus", "MRI of spine", "MRI of thoracic spine with and without contrast",
+  "MRI of thoracic spine with contrast", "MRI of thoracic spine without contrast", "MRI of thumb",
+  "MRI of upper arm with contrast", "MRI of upper arm", "MRI of upper extremity with and without contrast",
+  "MRI of upper extremity with contrast", "MRI of upper extremity without contrast",
+  "MRI of whole body with contrast", "MRI of whole body", "MRI of wrist with contrast",
+  "MRI of wrist without contrast", "MRI of wrist", "MRI scan", "MRI urogram with and without contrast",
+  "MRI urography", "MRI", "Magnetic resonance angiography", "Magnetic resonance cholangiopancreatography",
+  "Magnetic resonance imaging", "Magnetic resonance spectroscopy", "Mammogram", "Maxillofacial CT",
+  "Mesenteric arteriography", "Multigated acquisition scan", "Multiple sleep latency test",
+  "Myectomy surgery", "Myelogram of cervical spine", "Myelogram of entire spine",
+  "Myelogram of posterior fossa", "Myelogram of thoracic spine", "Myelogram", "Myocardial infarction scan",
+  "Myocardial perfusion scan at rest", "Myocardial perfusion scan with pain",
+  "Myocardial perfusion scan with pharmacological stress", "Myocardial perfusion scan with sestamibi",
+  "Myocardial perfusion scan with thallium", "Nuclear bladder scan", "Nuclear scans",
+  "Nuclear stress testing", "Nuclear ventriculography", "Obstetric ultrasound", "Open reduction",
+  "Oral cholecystogram", "Orbit CT scan", "Ovary removal", "PET CT Alzheimers disease",
+  "PET CT brain metabolic evaluation", "PET CT breast cancer monitoring", "PET CT breast cancer restaging",
+  "PET CT breast cancer staging", "PET CT cervical cancer staging", "PET CT colorectal cancer diagnosis",
+  "PET CT colorectal cancer initial staging", "PET CT colorectal cancer restaging",
+  "PET CT esophageal cancer diagnosis", "PET CT esophageal cancer initial staging",
+  "PET CT esophageal cancer restaging", "PET CT head and neck cancer diagnosis",
+  "PET CT head and neck cancer initial staging", "PET CT head and neck cancer restaging",
+  "PET CT lung cancer diagnosis", "PET CT lung cancer initial staging", "PET CT lung cancer restaging",
+  "PET CT lymphoma diagnosis", "PET CT lymphoma initial staging", "PET CT lymphoma restaging",
+  "PET CT melanoma diagnosis", "PET CT melanoma initial staging", "PET CT melanoma restaging",
+  "PET CT pulmonary nodule", "PET CT refractory seizures presurgical evaluation",
+  "PET CT thyroid cancer restaging", "PET brain for metabolic evaluation",
+  "PET brain for perfusion evaluation", "PET breast cancer diagnosis", "PET breast cancer recurrence",
+  "PET breast cancer response to treatment", "PET cervical cancer diagnosis", "PET cervical cancer staging",
+  "PET colorectal cancer initial staging", "PET esophageal cancer diagnosis",
+  "PET esophageal cancer initial staging", "PET esophageal cancer restaging", "PET for Alzheimers disease",
+  "PET head and neck cancer diagnosis", "PET head and neck cancer initial staging",
+  "PET head and neck cancer restaging", "PET lung cancer diagnosis", "PET lung cancer initial staging",
+  "PET lymphoma diagnosis", "PET lymphoma initial staging", "PET lymphoma restaging",
+  "PET melanoma diagnosis", "PET melanoma initial staging", "PET melanoma restaging",
+  "PET ovarian cancer restaging", "PET refractory seizures presurgical evaluation", "PET scan",
+  "PET thyroid cancer diagnosis", "PET thyroid cancer restaging",
+  "Pancrease CTA with CT cholangiopancreatography", "Paracentesis", "Parathyroid scan", "Pelvic Xray",
+  "Pelvic ultrasound", "Percutaneous transhepatic cholangiogram", "Percutaneous transhepatic cholangiography",
+  "Percutaneous transluminal coronary angioplasty", "Perfusion scan", "Phlebotomy", "Pregnancy ultrasound",
+  "Proton magnetic resonance spectroscopic imaging", "Pulmonary function test", "Pulmonary perfusion scan",
+  "Pulmonary ventilation scan", "RBC nuclear scan", "Radiation therapy", "Radioactive iodine uptake",
+  "Radiolabeled somatostatin analog scintigraphy", "Radionuclide cystogram", "Renal angiogram",
+  "Renal artery angioplasty", "Renal perfusion scan", "Renal scan", "Renal venogram", "Repeat ultrasound",
+  "Retina exam", "Retrograde cystography", "Retrograde cystourethrogram", "Rhinoscopy", "Rhizotomy",
+  "Sacroiliac MRI arthrogram", "Salivary gland scan", "Sclerotherapy", "Scrotal ultrasound",
+  "Serial ultrasound", "Sestamibi parathyroid scan", "Sestamibi stress test",
+  "Shockwave lithotripsy for kidney stones", "Shoulder CT arthrogram", "Shoulder MRI arthrogram",
+  "Shoulder replacement", "Sialogram MRI", "Sialogram", "Sigmoidoscopy",
+  "Single photon emission computed tomography", "Skeleton Xray", "Skin graft",
+  "Skull base and-or nasopharynx MRI with contrast", "Skull base and-or nasopharynx MRI without contrast",
+  "Sleep apnea ", "Sonogram", "Spiral CT", "Stem cell transplantation", "Stress echocardiography",
+  "Stress test", "Stress thallium test", "Subclavian artery arteriogram", "TMJ MRI arthrogram",
+  "Technetium 99m pertechnetate scan", "Testicular scan", "Testicular ultrasound", "Thermography",
+  "Thigh MRI with and without contrast", "Thigh MRI with contrast", "Thigh MRI without contrast",
+  "Thyroid nuclear scan", "Thyroid scan uptake only", "Thyroid scan with I 123",
+  "Thyroid scan with technetium 99m", "Thyroid scan", "Tracheostomy", "Transabdominal ultrasound",
+  "Transcranial magnetic stimulation", "Transesophageal echocardiogram", "Transesophageal echocardiography",
+  "Transrectal ultrasound with prostate biopsy", "Transrectal ultrasound", "Transthoracic echocardiogram",
+  "Transvaginal ultrasound of pelvis", "Transvaginal ultrasound", "Tubal ligation",
+  "Ultrasound at 36 weeks", "Ultrasound for nuchal translucency", "Ultrasound guided IUD removal",
+  "Ultrasound guided abscess drainage", "Ultrasound guided amniocentesis", "Ultrasound guided amnioinfusion",
+  "Ultrasound guided arthrocentesis of major joint", "Ultrasound guided arthrocentesis of minor joint",
+  "Ultrasound guided aspiration of breast cyst", "Ultrasound guided aspiration of renal cyst",
+  "Ultrasound guided biopsy of endomyocardium", "Ultrasound guided biopsy of kidney",
+  "Ultrasound guided biopsy of lung", "Ultrasound guided biopsy of rectal wall",
+  "Ultrasound guided biopsy of salivary gland", "Ultrasound guided biopsy of superficial nodes",
+  "Ultrasound guided biopsy of thoracic vertebra", "Ultrasound guided biopsy of thyroid",
+  "Ultrasound guided chorionic villus sampling", "Ultrasound guided colpocentesis via vaginal approach",
+  "Ultrasound guided fine needle aspiration of breast", "Ultrasound guided fine needle aspiration",
+  "Ultrasound guided needle biopsy of breast", "Ultrasound guided needle biopsy of muscle",
+  "Ultrasound guided needle biopsy of pleura", "Ultrasound guided needle core biopsy of breast",
+  "Ultrasound guided ova aspiration", "Ultrasound guided paracentesis",
+  "Ultrasound guided percutaneous biopsy of pancreas", "Ultrasound guided percutaneous biopsy of retroperitoneal mass",
+  "Ultrasound guided percutaneous, transhepatic cholecystomy", "Ultrasound guided pericardiocentesis",
+  "Ultrasound guided rotating knife biopsy of breast", "Ultrasound guided thoracentesis with chest tube placement",
+  "Ultrasound of abdomen and pelvis", "Ultrasound of abdomen", "Ultrasound of adrenal",
+  "Ultrasound of aorta and branches", "Ultrasound of bladder and kidneys", "Ultrasound of bone mineral density",
+  "Ultrasound of breast with wire localization", "Ultrasound of breast", "Ultrasound of chest",
+  "Ultrasound of coronary arteries", "Ultrasound of extremity veins", "Ultrasound of extremity",
+  "Ultrasound of gall bladder function with CCK", "Ultrasound of groin", "Ultrasound of hip",
+  "Ultrasound of joint", "Ultrasound of kidneys", "Ultrasound of liver or gallbladder",
+  "Ultrasound of lower extremity veins", "Ultrasound of neck soft tissue", "Ultrasound of pancreas",
+  "Ultrasound of parathyroid", "Ultrasound of parotid", "Ultrasound of pelvis", "Ultrasound of prostate",
+  "Ultrasound of rectum", "Ultrasound of retroperitoneal space", "Ultrasound of shoulder",
+  "Ultrasound of spine", "Ultrasound of spleen", "Ultrasound of thyroid", "Ultrasound of upper extremity veins",
+  "Ultrasound test", "Ultrasound to  baby growth", "Ultrasound to Evaluate Twins",
+  "Ultrasound to evaluate baby", "Ultrasound to evaluate fetal growth", "Upper arm lift",
+  "Urinary porphobilinogen", "Urodynamic testing", "VCUG", "Vascular ultrasound", "Venogram of leg",
+  "Vertebroplasty", "Video fluoroscopy", "Virtual colonoscopy", "Virtual reality exposure therapy",
+  "White blood cell scan", "Xeroradiography", "Xray of abdomen", "Xray of ankle",
+  "Xray of bladder & urethra while voiding", "Xray of chest", "Xray of clavicle", "Xray of coccyx",
+  "Xray of elbow", "Xray of femur", "Xray of foot", "Xray of forearm", "Xray of hand", "Xray of head",
+  "Xray of hip", "Xray of joint", "Xray of knee", "Xray of leg", "Xray of lower spine",
+  "Xray of lumbosacral spine", "Xray of neck", "Xray of nose", "Xray of orbits", "Xray of pelvis",
+  "Xray of ribs", "Xray of shoulder", "Xray of sinuses", "Xray of skull", "Xray of spine",
+  "Xray of sternum", "Xray of the bladder", "Xray of thoracic spine", "Xray of thumb",
+  "Xray of upper arm", "Xray of whole body", "Xray of wrist", "Xray", "Yag laser"
+]
+
+// Normalize test name for fuzzy matching
+function normalizeTestName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/x-ray/g, 'xray')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+// Build a lookup map from normalized names to original filenames for faster matching
+const PROCEDURE_IMAGE_MAP: Record<string, string> = {}
+PROCEDURE_IMAGE_FILES.forEach(filename => {
+  const normalized = normalizeTestName(filename)
+  PROCEDURE_IMAGE_MAP[normalized] = filename
+})
+
+// Get procedure image path if it exists
+export function getProcedureImage(testName: string): string | null {
+  const normalized = normalizeTestName(testName)
+  
+  // Check for exact match first
+  if (PROCEDURE_IMAGE_MAP[normalized]) {
+    return `/images/procedure_images/${encodeURIComponent(PROCEDURE_IMAGE_MAP[normalized])}.png`
+  }
+  
+  // Check for fuzzy match (test name contains image name or vice versa)
+  for (const [key, filename] of Object.entries(PROCEDURE_IMAGE_MAP)) {
+    if (normalized.includes(key) || key.includes(normalized)) {
+      return `/images/procedure_images/${encodeURIComponent(filename)}.png`
+    }
+  }
+  
+  return null
+}
+
 // Test images mapping
 export const TEST_IMAGES: Record<string, string> = {
   'x-ray': '/images/x-ray.png',
@@ -644,8 +905,14 @@ export const TEST_IMAGES: Record<string, string> = {
   'c-arm': '/images/interventionalx-ray.png'
 }
 
-// Get test image
+// Get test image - checks procedure images first, then specific test images, then falls back to placeholder
 export function getTestImage(testName: string, testType: TestType): string {
+  // First check for matching procedure image
+  const procedureImage = getProcedureImage(testName)
+  if (procedureImage) {
+    return procedureImage
+  }
+  
   const nameLower = testName.toLowerCase()
   
   // Check for exact or partial match in TEST_IMAGES
