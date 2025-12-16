@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import BodySvg from './components/BodySvg';
 import BackBodySvg from './components/BackBodySvg';
+import FemaleBodySvg from './components/FemaleBodySvg';
+import FemaleBackBodySvg from './components/FemaleBackBodySvg';
 import SymptomDialog from './components/SymptomDialog';
 import { BodyPartId, FrontBodyPartId, BackBodyPartId } from './types';
-import { Search, RotateCw, ArrowLeft } from 'lucide-react';
+import { Search, RotateCw, ArrowLeft, User } from 'lucide-react';
 import './BodyMap.css';
 
 interface BodyMapProps {
@@ -13,6 +15,7 @@ interface BodyMapProps {
 const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
   const [selectedPart, setSelectedPart] = useState<BodyPartId | null>(null);
   const [isFront, setIsFront] = useState(true);
+  const [isMale, setIsMale] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleFrontPartClick = (part: FrontBodyPartId) => {
@@ -30,6 +33,11 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
   const toggleRotation = () => {
     setSelectedPart(null); // Clear selection when rotating
     setIsFront(!isFront);
+  };
+
+  const toggleGender = () => {
+    setSelectedPart(null); // Clear selection when switching gender
+    setIsMale(!isMale);
   };
 
   return (
@@ -65,7 +73,7 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
 
           {/* View Indicator */}
           <div className="body-map-view-indicator">
-            Viewing: <span className="view-label">{isFront ? 'Front' : 'Back'}</span>
+            Viewing: <span className="view-label">{isFront ? 'Front' : 'Back'}</span> ({isMale ? 'Male' : 'Female'})
           </div>
 
           {/* Action Button */}
@@ -86,18 +94,32 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
             <div className={`body-flip-container ${!isFront ? 'flipped' : ''}`}>
               {/* Front Face */}
               <div className="body-flip-face body-flip-front">
-                <BodySvg
-                  selectedPart={selectedPart as FrontBodyPartId | null}
-                  onPartClick={handleFrontPartClick}
-                  isFront={true}
-                />
+                {isMale ? (
+                  <BodySvg
+                    selectedPart={selectedPart as FrontBodyPartId | null}
+                    onPartClick={handleFrontPartClick}
+                    isFront={true}
+                  />
+                ) : (
+                  <FemaleBodySvg
+                    selectedPart={selectedPart as FrontBodyPartId | null}
+                    onPartClick={handleFrontPartClick}
+                  />
+                )}
               </div>
               {/* Back Face */}
               <div className="body-flip-face body-flip-back">
-                <BackBodySvg
-                  selectedPart={selectedPart as BackBodyPartId | null}
-                  onPartClick={handleBackPartClick}
-                />
+                {isMale ? (
+                  <BackBodySvg
+                    selectedPart={selectedPart as BackBodyPartId | null}
+                    onPartClick={handleBackPartClick}
+                  />
+                ) : (
+                  <FemaleBackBodySvg
+                    selectedPart={selectedPart as BackBodyPartId | null}
+                    onPartClick={handleBackPartClick}
+                  />
+                )}
               </div>
             </div>
 
@@ -105,17 +127,27 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
             <SymptomDialog
               selectedPart={selectedPart}
               onClose={handleCloseDialog}
+              isMale={isMale}
             />
           </div>
 
-          {/* Rotate Button */}
-          <button
-            onClick={toggleRotation}
-            className="body-map-rotate-btn"
-          >
-            <RotateCw size={18} />
-            <span>Rotate model</span>
-          </button>
+          {/* Control Buttons */}
+          <div className="body-map-controls">
+            <button
+              onClick={toggleGender}
+              className="body-map-gender-btn"
+            >
+              <User size={18} />
+              <span>{isMale ? 'Male' : 'Female'}</span>
+            </button>
+            <button
+              onClick={toggleRotation}
+              className="body-map-rotate-btn"
+            >
+              <RotateCw size={18} />
+              <span>Rotate model</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

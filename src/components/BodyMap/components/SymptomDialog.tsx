@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { BodyPartId } from '../types';
-import { BODY_DATA } from '../constants';
+import { BODY_DATA, FEMALE_BODY_DATA } from '../constants';
 import { X, Activity, Stethoscope } from 'lucide-react';
 
 interface SymptomDialogProps {
   selectedPart: BodyPartId | null;
   onClose: () => void;
+  isMale?: boolean;
 }
 
-const SymptomDialog: React.FC<SymptomDialogProps> = ({ selectedPart, onClose }) => {
+const SymptomDialog: React.FC<SymptomDialogProps> = ({ selectedPart, onClose, isMale = true }) => {
   const [activeTab, setActiveTab] = useState<'symptoms' | 'diseases'>('symptoms');
 
   if (!selectedPart) return null;
 
-  const data = BODY_DATA[selectedPart];
+  // Use gender-specific data
+  const bodyData = isMale ? BODY_DATA : FEMALE_BODY_DATA;
+  const data = bodyData[selectedPart];
   const hasDiseases = data.diseases && data.diseases.length > 0;
 
   return (

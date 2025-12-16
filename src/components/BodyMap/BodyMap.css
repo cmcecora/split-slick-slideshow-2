@@ -244,12 +244,20 @@
   stroke: var(--accent-primary);
 }
 
-/* Rotate Button */
-.body-map-rotate-btn {
+/* Control Buttons Container */
+.body-map-controls {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+/* Gender Toggle Button */
+.body-map-gender-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -264,7 +272,30 @@
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
-  z-index: 10;
+}
+
+.body-map-gender-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Rotate Button */
+.body-map-rotate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(26, 35, 50, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  color: var(--accent-primary);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .body-map-rotate-btn:hover {
@@ -488,6 +519,43 @@
   stroke: none;
 }
 
+/* Female Body SVG Styles */
+.female-body-svg,
+.female-back-body-svg {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Female body outline layer - not clickable, just for visual details */
+.body-outline-layer {
+  pointer-events: none;
+}
+
+.body-outline-path {
+  fill: transparent;
+  stroke: var(--border-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.4;
+}
+
+/* Female front body sizing */
+.body-flip-front .female-body-svg {
+  width: 500px;
+  height: auto;
+  max-height: 70vh;
+}
+
+/* Female back body sizing */
+.body-flip-back .female-back-body-svg {
+  width: 300px;
+  height: auto;
+  max-height: 70vh;
+}
+
 /* View Indicator */
 .body-map-view-indicator {
   margin-bottom: 1.5rem;
@@ -608,11 +676,22 @@
     width: 250px;
   }
 
-  .body-map-rotate-btn {
+  .body-map-controls {
     bottom: 1rem;
     right: 1rem;
     left: auto;
     transform: none;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Female responsive sizing */
+  .body-flip-front .female-body-svg {
+    width: 400px;
+  }
+
+  .body-flip-back .female-back-body-svg {
+    width: 240px;
   }
 }
 
