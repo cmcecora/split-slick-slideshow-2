@@ -1,21 +1,21 @@
 import React from 'react';
-import { BodyPartId } from '../types';
+import { FrontBodyPartId } from '../types';
 
 interface BodySvgProps {
-  selectedPart: BodyPartId | null;
-  onPartClick: (part: BodyPartId) => void;
-  isFront: boolean;
+  selectedPart: FrontBodyPartId | null;
+  onPartClick: (part: FrontBodyPartId) => void;
+  isFront?: boolean;
 }
 
-const BodySvg: React.FC<BodySvgProps> = ({ selectedPart, onPartClick, isFront }) => {
+const BodySvg: React.FC<BodySvgProps> = ({ selectedPart, onPartClick }) => {
 
-  const getPathClass = (partId: BodyPartId) => {
+  const getPathClass = (partId: FrontBodyPartId) => {
     const isSelected = selectedPart === partId;
     return `body-svg-path ${isSelected ? 'selected' : ''}`;
   };
 
   return (
-    <div className={`body-svg-container ${!isFront ? 'flipped' : ''}`}>
+    <div className="body-svg-container">
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

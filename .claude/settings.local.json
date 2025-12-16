@@ -3,7 +3,18 @@
     "allow": [
       "Bash(git -C /Volumes/LaCie/newBodyModelPlusNov2625/split-slick-slideshow 2 log --oneline)",
       "Bash(git clone:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "mcp__ide__getDiagnostics",
+      "mcp__playwright-mcp__playwright_screenshot",
+      "mcp__playwright-mcp__playwright_get_visible_html",
+      "mcp__playwright-mcp__playwright_navigate",
+      "mcp__playwright-mcp__playwright_click",
+      "mcp__playwright-mcp__playwright_evaluate",
+      "Bash(cat:*)",
+      "Bash(while read line)",
+      "Bash(do echo \"$line\")",
+      "Bash(done)",
+      "mcp__playwright-mcp__playwright_close"
     ],
     "deny": [],
     "ask": []
