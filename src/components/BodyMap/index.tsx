@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import BodySvg from './components/BodySvg';
+import BackBodySvg from './components/BackBodySvg';
 import SymptomDialog from './components/SymptomDialog';
-import { BodyPartId } from './types';
+import { BodyPartId, FrontBodyPartId, BackBodyPartId } from './types';
 import { Search, RotateCw, ArrowLeft } from 'lucide-react';
 import './BodyMap.css';
 
@@ -14,7 +15,11 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
   const [isFront, setIsFront] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handlePartClick = (part: BodyPartId) => {
+  const handleFrontPartClick = (part: FrontBodyPartId) => {
+    setSelectedPart(part);
+  };
+
+  const handleBackPartClick = (part: BackBodyPartId) => {
     setSelectedPart(part);
   };
 
@@ -23,6 +28,7 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
   };
 
   const toggleRotation = () => {
+    setSelectedPart(null); // Clear selection when rotating
     setIsFront(!isFront);
   };
 
@@ -57,6 +63,11 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
             />
           </div>
 
+          {/* View Indicator */}
+          <div className="body-map-view-indicator">
+            Viewing: <span className="view-label">{isFront ? 'Front' : 'Back'}</span>
+          </div>
+
           {/* Action Button */}
           <button className="body-map-next-btn">
             Next
@@ -71,12 +82,24 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
         {/* Right Panel - Body Model */}
         <div className="body-map-right-panel">
           <div className="body-model-container">
-            {/* Render the interactive body */}
-            <BodySvg
-              selectedPart={selectedPart}
-              onPartClick={handlePartClick}
-              isFront={isFront}
-            />
+            {/* 3D Flip Container */}
+            <div className={`body-flip-container ${!isFront ? 'flipped' : ''}`}>
+              {/* Front Face */}
+              <div className="body-flip-face body-flip-front">
+                <BodySvg
+                  selectedPart={selectedPart as FrontBodyPartId | null}
+                  onPartClick={handleFrontPartClick}
+                  isFront={true}
+                />
+              </div>
+              {/* Back Face */}
+              <div className="body-flip-face body-flip-back">
+                <BackBodySvg
+                  selectedPart={selectedPart as BackBodyPartId | null}
+                  onPartClick={handleBackPartClick}
+                />
+              </div>
+            </div>
 
             {/* Symptom Popup Overlay */}
             <SymptomDialog

@@ -198,7 +198,7 @@
 .body-model-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
   aspect-ratio: 617/755;
 }
 
@@ -395,6 +395,173 @@
 }
 
 /* ============================================
+   3D Flip Animation Styles
+   ============================================ */
+
+/* 3D Flip Container - anchored at feet (bottom) */
+.body-flip-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 600ms ease-in-out;
+  transform-origin: center bottom;
+}
+
+.body-flip-container.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Flip Faces */
+.body-flip-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.body-flip-front {
+  z-index: 2;
+}
+
+.body-flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Ensure both SVG containers are the same size */
+.body-flip-face .body-svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Front body is intentionally larger to match perceived back size */
+.body-flip-front .body-svg {
+  width: 700px;
+  height: auto;
+  max-height: 70vh;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.body-flip-back .back-body-svg {
+  width: 350px;
+  height: auto;
+  max-height: 70vh;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .body-flip-front .body-svg {
+    width: 560px;
+  }
+
+  .body-flip-back .back-body-svg {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .body-flip-front .body-svg {
+    width: 440px;
+  }
+
+  .body-flip-back .back-body-svg {
+    width: 220px;
+  }
+}
+
+/* ============================================
+   Back Body SVG Styles (matching front exactly)
+   ============================================ */
+
+/* Back Body Outline - invisible, just for structure */
+.back-body-outline {
+  fill: transparent;
+  stroke: none;
+}
+
+/* View Indicator */
+.body-map-view-indicator {
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.body-map-view-indicator .view-label {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* ============================================
+   Symptom Dialog Tab Styles
+   ============================================ */
+
+.symptom-dialog-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+}
+
+.symptom-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.625rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.symptom-tab:hover {
+  color: var(--text-secondary);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+.symptom-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.symptom-tab svg {
+  flex-shrink: 0;
+}
+
+/* Disease Item Styling */
+.disease-list .disease-item {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.disease-list .disease-item::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+}
+
+/* ============================================
    Responsive Styles
    ============================================ */
 
@@ -434,7 +601,7 @@
   }
 
   .body-model-container {
-    max-width: 350px;
+    max-width: 480px;
   }
 
   .symptom-dialog {
