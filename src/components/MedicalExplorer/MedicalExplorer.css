@@ -932,3 +932,658 @@
   }
 }
 
+/* ============================================
+   Main Content Area
+   ============================================ */
+
+.main-content-area {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+/* ============================================
+   Overview Panel Styles
+   ============================================ */
+
+.overview-panel {
+  padding: var(--panel-padding);
+  animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.overview-hero {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.overview-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.overview-image-container {
+  width: 200px;
+  height: 200px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview-body-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.overview-image-placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.overview-mini-map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.overview-mini-map {
+  width: 120px;
+  height: auto;
+}
+
+.overview-mini-map-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.overview-hero-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.overview-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.overview-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.overview-systems {
+  margin-top: 1.5rem;
+}
+
+.overview-systems-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.overview-systems-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.overview-system-badge {
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.overview-system-badge:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* System-specific colors */
+.overview-system-badge[data-system="Nervous"] { border-left: 3px solid #a855f7; }
+.overview-system-badge[data-system="Cardiovascular"] { border-left: 3px solid #ef4444; }
+.overview-system-badge[data-system="Respiratory"] { border-left: 3px solid #3b82f6; }
+.overview-system-badge[data-system="Endocrine"] { border-left: 3px solid #f59e0b; }
+.overview-system-badge[data-system="Digestive"] { border-left: 3px solid #22c55e; }
+.overview-system-badge[data-system="Excretory"] { border-left: 3px solid #eab308; }
+.overview-system-badge[data-system="Immune"] { border-left: 3px solid #06b6d4; }
+.overview-system-badge[data-system="Integumentary"] { border-left: 3px solid #ec4899; }
+.overview-system-badge[data-system="Muscular"] { border-left: 3px solid #f97316; }
+.overview-system-badge[data-system="Skeletal"] { border-left: 3px solid #64748b; }
+
+/* Overview Stats */
+.overview-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.overview-stat {
+  flex: 1;
+  min-width: 120px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.overview-stat:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.overview-stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.overview-stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Overview Previews */
+.overview-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.overview-preview-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.overview-preview-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+}
+
+.overview-preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.overview-preview-tag {
+  padding: 0.375rem 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.overview-preview-tag:hover {
+  background: var(--bg-card-hover);
+}
+
+.overview-preview-tag--disease { border-left: 2px solid #ef4444; }
+.overview-preview-tag--symptom { border-left: 2px solid #f59e0b; }
+.overview-preview-tag--nutrition { border-left: 2px solid #22c55e; }
+
+/* ============================================
+   Body Part Mini Map Styles
+   ============================================ */
+
+.body-part-mini-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-map-svg {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.mini-map-path {
+  fill: var(--bg-tertiary);
+  stroke: var(--border-color);
+  stroke-width: 2;
+  transition: all var(--transition-fast);
+}
+
+.mini-map-path.highlighted {
+  fill: var(--accent-primary);
+  fill-opacity: 0.3;
+  stroke: var(--accent-primary);
+  stroke-width: 3;
+}
+
+/* ============================================
+   Content Card Styles
+   ============================================ */
+
+.content-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  padding: var(--panel-padding);
+}
+
+.content-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  transition: all var(--transition-medium);
+  animation: fadeInScale var(--transition-slow) ease-out forwards;
+  cursor: pointer;
+}
+
+.content-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
+}
+
+.content-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.content-card-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+}
+
+.content-card--disease .content-card-icon { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+.content-card--symptom .content-card-icon { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+.content-card--procedure .content-card-icon { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+.content-card--treatment .content-card-icon { color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+.content-card--nutrition .content-card-icon { color: #10b981; background: rgba(16, 185, 129, 0.1); }
+
+.content-card-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.content-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.content-card-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+
+.content-card-badge--warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+.content-card-badge--success { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.content-card-badge--info { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+
+.content-card-chevron {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all var(--transition-fast);
+}
+
+.content-card:hover .content-card-chevron {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content-card-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Compact Content Card */
+.compact-content-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.compact-content-card:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-card-hover);
+}
+
+.compact-content-card-icon {
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Panel Common Styles
+   ============================================ */
+
+.panel-header-info {
+  padding: var(--panel-padding);
+  padding-bottom: 0;
+}
+
+.panel-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.panel-section-title svg {
+  color: var(--accent-primary);
+}
+
+.panel-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.panel-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.panel-empty-state svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.panel-empty-state h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+
+.panel-empty-state p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* ============================================
+   Nutrition Panel Styles
+   ============================================ */
+
+.nutrition-panel {
+  animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: var(--panel-padding);
+}
+
+.nutrition-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  transition: all var(--transition-medium);
+  animation: fadeInScale var(--transition-slow) ease-out forwards;
+}
+
+.nutrition-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nutrition-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.nutrition-emoji {
+  font-size: 1.5rem;
+}
+
+.nutrition-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.nutrition-category {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+
+.nutrition-category--fruit { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.nutrition-category--vegetable { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+.nutrition-category--protein { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+.nutrition-category--grain { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.nutrition-category--fat { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.nutrition-category--other { background: rgba(107, 114, 128, 0.15); color: #6b7280; }
+
+.nutrition-benefit {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.nutrition-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: var(--panel-padding);
+  padding-top: 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.nutrition-legend-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nutrition-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.nutrition-legend-item {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   Responsive Styles for New Panels
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .overview-hero {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .overview-hero-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .overview-image-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .overview-title {
+    font-size: 2rem;
+  }
+
+  .content-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .overview-hero-left {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .overview-hero-right {
+    text-align: center;
+  }
+
+  .overview-systems-list {
+    justify-content: center;
+  }
+
+  .overview-stats {
+    justify-content: center;
+  }
+
+  .overview-stat {
+    min-width: 100px;
+  }
+
+  .overview-title {
+    font-size: 1.75rem;
+  }
+
+  .content-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nutrition-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-panel {
+    padding: 1rem;
+  }
+
+  .overview-image-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .overview-mini-map {
+    width: 80px;
+  }
+
+  .overview-title {
+    font-size: 1.5rem;
+  }
+
+  .overview-stats {
+    flex-direction: column;
+  }
+
+  .overview-stat {
+    width: 100%;
+  }
+
+  .overview-previews {
+    grid-template-columns: 1fr;
+  }
+
+  .content-cards-grid,
+  .nutrition-grid {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .content-card,
+  .nutrition-card {
+    padding: 1rem;
+  }
+}
+
