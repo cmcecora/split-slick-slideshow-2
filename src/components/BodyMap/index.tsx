@@ -19,11 +19,11 @@ const BodyMap: React.FC<BodyMapProps> = ({ onSwitchView }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleFrontPartClick = (part: FrontBodyPartId) => {
-    setSelectedPart(part);
+    setSelectedPart(prev => prev === part ? null : part);
   };
 
   const handleBackPartClick = (part: BackBodyPartId) => {
-    setSelectedPart(part);
+    setSelectedPart(prev => prev === part ? null : part);
   };
 
   const handleCloseDialog = () => {
