@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
-import { X, Search, Layers, Scan } from 'lucide-react'
+import { X, Search, Layers, Scan, User } from 'lucide-react'
 import { TabNavigation } from './TabNavigation'
 import { TestCard } from './TestCard'
+import { LinksDropdown, type LinkItem } from '../common/LinksDropdown'
 import { TESTS, getTestsForBodyPart, formatBodyPartName, IMAGING_TYPES } from '../../data/testData'
 import type { TabType, TestFilterType, MedicalTest } from '../../types'
 
@@ -14,6 +15,7 @@ interface TestsPanelProps {
   onTestFilterChange: (filter: TestFilterType) => void
   onSwitchToSlideshow: () => void
   onSwitchToBodyMap: () => void
+  onSwitchToBodyExplorer: () => void
 }
 
 export function TestsPanel({
@@ -24,8 +26,31 @@ export function TestsPanel({
   testFilter,
   onTestFilterChange,
   onSwitchToSlideshow,
-  onSwitchToBodyMap
+  onSwitchToBodyMap,
+  onSwitchToBodyExplorer
 }: TestsPanelProps) {
+
+  // Define navigation links for the dropdown
+  const navigationLinks: LinkItem[] = [
+    {
+      id: 'body-explorer',
+      label: 'Body Explorer',
+      icon: <User size={16} />,
+      onClick: onSwitchToBodyExplorer
+    },
+    {
+      id: 'body-map',
+      label: 'Body Map',
+      icon: <Scan size={16} />,
+      onClick: onSwitchToBodyMap
+    },
+    {
+      id: 'slideshow',
+      label: 'Slideshow',
+      icon: <Layers size={16} />,
+      onClick: onSwitchToSlideshow
+    }
+  ]
   
   // Get filtered tests
   const filteredTests = useMemo(() => {
@@ -61,22 +86,7 @@ export function TestsPanel({
             )}
           </div>
           <div className="test-count-container">
-            <button
-              className="body-map-btn"
-              onClick={onSwitchToBodyMap}
-              title="Interactive Body Map"
-            >
-              <Scan size={16} />
-              <span>Body Map</span>
-            </button>
-            <button
-              className="slideshow-btn"
-              onClick={onSwitchToSlideshow}
-              title="View Slideshow"
-            >
-              <Layers size={16} />
-              <span>Slideshow</span>
-            </button>
+            <LinksDropdown links={navigationLinks} />
             <span className="test-count">
               {filteredTests.length} test{filteredTests.length !== 1 ? 's' : ''}
             </span>

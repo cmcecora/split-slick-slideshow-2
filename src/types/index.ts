@@ -40,3 +40,46 @@ export interface Slide {
   text: string
 }
 
+// Body Part Content Types
+export interface Disease {
+  name: string
+  description: string
+  severity?: 'mild' | 'moderate' | 'severe'
+}
+
+export interface Symptom {
+  name: string
+  description: string
+  commonality?: 'common' | 'uncommon' | 'rare'
+}
+
+export interface Procedure {
+  name: string
+  description: string
+  type: 'diagnostic' | 'surgical' | 'therapeutic'
+}
+
+export interface Treatment {
+  name: string
+  description: string
+  type: 'medication' | 'therapy' | 'surgery' | 'lifestyle'
+}
+
+export interface NutritionItem {
+  name: string
+  benefit: string
+  category: 'fruit' | 'vegetable' | 'protein' | 'grain' | 'fat' | 'other'
+}
+
+export interface BodyPartContent {
+  name: string
+  description: string
+  image: string
+  relatedSystems: string[]
+  diseases: Disease[]
+  symptoms: Symptom[]
+  procedures: Procedure[]
+  treatments: Treatment[]
+  nutrition: NutritionItem[]
+}
+

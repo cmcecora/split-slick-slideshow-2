@@ -1,25 +1,33 @@
-import { useState } from 'react'
-import { BodyPartsPanel } from './BodyPartsPanel'
-import { TestsPanel } from './TestsPanel'
-import type { ViewMode, TabType, TestFilterType } from '../../types'
-import './MedicalExplorer.css'
+import { useState } from "react";
+import { BodyPartsPanel } from "./BodyPartsPanel";
+import { MainContentPanel } from "./MainContentPanel";
+import type { ViewMode, TabType, TestFilterType } from "../../types";
+import "./MedicalExplorer.css";
 
 interface MedicalExplorerProps {
-  onSwitchView: (view: 'slideshow' | 'body-map') => void
+  onSwitchView: (view: "slideshow" | "body-map" | "body-explorer") => void;
 }
 
 export function MedicalExplorer({ onSwitchView }: MedicalExplorerProps) {
-  const [selectedBodyPart, setSelectedBodyPart] = useState<string | null>(null)
-  const [currentView, setCurrentView] = useState<ViewMode>('grouped')
-  const [currentTab, setCurrentTab] = useState<TabType>('tests')
-  const [testFilter, setTestFilter] = useState<TestFilterType>('all')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedBodyPart, setSelectedBodyPart] = useState<string | null>(null);
+  const [currentView, setCurrentView] = useState<ViewMode>("grouped");
+  const [currentTab, setCurrentTab] = useState<TabType>("overview");
+  const [testFilter, setTestFilter] = useState<TestFilterType>("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleClearSelection = () => {
-    setSelectedBodyPart(null)
-    setCurrentTab('tests')
-    setTestFilter('all')
-  }
+    setSelectedBodyPart(null);
+    setCurrentTab("overview");
+    setTestFilter("all");
+  };
+
+  // When a body part is selected, switch to overview tab
+  const handleSelectBodyPart = (bodyPart: string | null) => {
+    setSelectedBodyPart(bodyPart);
+    if (bodyPart) {
+      setCurrentTab("overview");
+    }
+  };
 
   return (
     <div className="app-container">
@@ -27,22 +35,22 @@ export function MedicalExplorer({ onSwitchView }: MedicalExplorerProps) {
         currentView={currentView}
         onViewChange={setCurrentView}
         selectedBodyPart={selectedBodyPart}
-        onSelectBodyPart={setSelectedBodyPart}
+        onSelectBodyPart={handleSelectBodyPart}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        onNavigateToBodyMap={() => onSwitchView('body-map')}
+        onNavigateToBodyMap={() => onSwitchView("body-map")}
       />
-      <TestsPanel
+      <MainContentPanel
         selectedBodyPart={selectedBodyPart}
         onClearSelection={handleClearSelection}
         currentTab={currentTab}
         onTabChange={setCurrentTab}
         testFilter={testFilter}
         onTestFilterChange={setTestFilter}
-        onSwitchToSlideshow={() => onSwitchView('slideshow')}
-        onSwitchToBodyMap={() => onSwitchView('body-map')}
+        onSwitchToSlideshow={() => onSwitchView("slideshow")}
+        onSwitchToBodyMap={() => onSwitchView("body-map")}
+        onSwitchToBodyExplorer={() => onSwitchView("body-explorer")}
       />
     </div>
-  )
+  );
 }
-
