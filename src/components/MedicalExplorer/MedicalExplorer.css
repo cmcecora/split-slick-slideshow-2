@@ -483,6 +483,51 @@
   color: var(--accent-primary);
 }
 
+/* Body Map Navigation Button (Left Panel) */
+.body-map-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-left: 0.5rem;
+}
+
+.body-map-nav-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Body Map Button (Right Panel) */
+.body-map-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.body-map-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
 /* ============================================
    Tab Navigation Bar
    ============================================ */
@@ -851,6 +896,10 @@
   }
 
   .slideshow-btn span {
+    display: none;
+  }
+
+  .body-map-btn span {
     display: none;
   }
 }

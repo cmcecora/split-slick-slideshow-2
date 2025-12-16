@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git -C /Volumes/LaCie/newBodyModelPlusNov2625/split-slick-slideshow 2 log --oneline)"
+      "Bash(git -C /Volumes/LaCie/newBodyModelPlusNov2625/split-slick-slideshow 2 log --oneline)",
+      "Bash(git clone:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

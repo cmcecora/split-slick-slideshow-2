@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Grid2X2, User, List } from 'lucide-react'
+import { Grid2X2, User, List, Scan } from 'lucide-react'
 import { SearchInput } from './SearchInput'
 import { CategoryAccordion } from './CategoryAccordion'
 import { BodyPartCard } from './BodyPartCard'
@@ -13,6 +13,7 @@ interface BodyPartsPanelProps {
   onSelectBodyPart: (bodyPart: string | null) => void
   searchTerm: string
   onSearchChange: (term: string) => void
+  onNavigateToBodyMap: () => void
 }
 
 export function BodyPartsPanel({
@@ -21,7 +22,8 @@ export function BodyPartsPanel({
   selectedBodyPart,
   onSelectBodyPart,
   searchTerm,
-  onSearchChange
+  onSearchChange,
+  onNavigateToBodyMap
 }: BodyPartsPanelProps) {
   
   // Filter body parts based on search
@@ -82,21 +84,21 @@ export function BodyPartsPanel({
       <div className="panel-header">
         <h1 className="panel-title">Body Parts</h1>
         <div className="view-toggle">
-          <button 
+          <button
             className={`toggle-btn ${currentView === 'grouped' ? 'active' : ''}`}
             onClick={() => onViewChange('grouped')}
             title="Grouped by Region"
           >
             <Grid2X2 size={16} />
           </button>
-          <button 
+          <button
             className={`toggle-btn ${currentView === 'systems' ? 'active' : ''}`}
             onClick={() => onViewChange('systems')}
             title="Body Systems"
           >
             <User size={16} />
           </button>
-          <button 
+          <button
             className={`toggle-btn ${currentView === 'flat' ? 'active' : ''}`}
             onClick={() => onViewChange('flat')}
             title="A-Z List"
@@ -104,6 +106,13 @@ export function BodyPartsPanel({
             <List size={16} />
           </button>
         </div>
+        <button
+          className="body-map-nav-btn"
+          onClick={onNavigateToBodyMap}
+          title="Interactive Body Map"
+        >
+          <Scan size={16} />
+        </button>
       </div>
       
       <SearchInput
