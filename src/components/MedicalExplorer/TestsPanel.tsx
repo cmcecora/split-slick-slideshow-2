@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { X, Search, Layers } from 'lucide-react'
+import { X, Search, Layers, Scan } from 'lucide-react'
 import { TabNavigation } from './TabNavigation'
 import { TestCard } from './TestCard'
 import { TESTS, getTestsForBodyPart, formatBodyPartName, IMAGING_TYPES } from '../../data/testData'
@@ -13,6 +13,7 @@ interface TestsPanelProps {
   testFilter: TestFilterType
   onTestFilterChange: (filter: TestFilterType) => void
   onSwitchToSlideshow: () => void
+  onSwitchToBodyMap: () => void
 }
 
 export function TestsPanel({
@@ -22,7 +23,8 @@ export function TestsPanel({
   onTabChange,
   testFilter,
   onTestFilterChange,
-  onSwitchToSlideshow
+  onSwitchToSlideshow,
+  onSwitchToBodyMap
 }: TestsPanelProps) {
   
   // Get filtered tests
@@ -59,7 +61,15 @@ export function TestsPanel({
             )}
           </div>
           <div className="test-count-container">
-            <button 
+            <button
+              className="body-map-btn"
+              onClick={onSwitchToBodyMap}
+              title="Interactive Body Map"
+            >
+              <Scan size={16} />
+              <span>Body Map</span>
+            </button>
+            <button
               className="slideshow-btn"
               onClick={onSwitchToSlideshow}
               title="View Slideshow"

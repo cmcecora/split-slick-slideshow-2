@@ -5,7 +5,7 @@ import type { ViewMode, TabType, TestFilterType } from '../../types'
 import './MedicalExplorer.css'
 
 interface MedicalExplorerProps {
-  onSwitchView: () => void
+  onSwitchView: (view: 'slideshow' | 'body-map') => void
 }
 
 export function MedicalExplorer({ onSwitchView }: MedicalExplorerProps) {
@@ -30,6 +30,7 @@ export function MedicalExplorer({ onSwitchView }: MedicalExplorerProps) {
         onSelectBodyPart={setSelectedBodyPart}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
+        onNavigateToBodyMap={() => onSwitchView('body-map')}
       />
       <TestsPanel
         selectedBodyPart={selectedBodyPart}
@@ -38,7 +39,8 @@ export function MedicalExplorer({ onSwitchView }: MedicalExplorerProps) {
         onTabChange={setCurrentTab}
         testFilter={testFilter}
         onTestFilterChange={setTestFilter}
-        onSwitchToSlideshow={onSwitchView}
+        onSwitchToSlideshow={() => onSwitchView('slideshow')}
+        onSwitchToBodyMap={() => onSwitchView('body-map')}
       />
     </div>
   )
