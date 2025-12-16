@@ -1322,12 +1322,1008 @@ const NOSE_CONTENT: BodyPartContent = {
   nutrition: NOSE_NUTRITION
 }
 
+// ============================================================
+// MOUTH, TEETH & GUMS CONTENT
+// ============================================================
+
+const MOUTH_DISEASES: Disease[] = [
+  {
+    name: "Dental Caries (Cavities)",
+    description: "Tooth decay caused by bacteria producing acids that destroy enamel and dentin. The most common chronic disease worldwide.",
+    severity: 'moderate'
+  },
+  {
+    name: "Periodontal Disease (Gum Disease)",
+    description: "Infection of the tissues surrounding teeth, ranging from gingivitis to advanced periodontitis with bone loss and tooth loss.",
+    severity: 'severe'
+  },
+  {
+    name: "Gingivitis",
+    description: "Early stage of gum disease causing red, swollen, and bleeding gums. Reversible with proper oral hygiene.",
+    severity: 'mild'
+  },
+  {
+    name: "Oral Cancer",
+    description: "Malignant growths in the mouth, tongue, lips, or throat. Risk factors include tobacco, alcohol, and HPV infection.",
+    severity: 'severe'
+  },
+  {
+    name: "Oral Thrush (Candidiasis)",
+    description: "Fungal infection causing white patches on tongue and inner cheeks. Common in infants, elderly, and immunocompromised individuals.",
+    severity: 'mild'
+  },
+  {
+    name: "Temporomandibular Joint Disorder (TMJ)",
+    description: "Dysfunction of the jaw joint causing pain, clicking, and difficulty chewing. Often related to teeth grinding or stress.",
+    severity: 'moderate'
+  },
+  {
+    name: "Tooth Abscess",
+    description: "Pocket of pus caused by bacterial infection at the tooth root or gum. Causes severe pain and can spread to other areas.",
+    severity: 'severe'
+  },
+  {
+    name: "Oral Herpes (Cold Sores)",
+    description: "Viral infection causing painful blisters on lips and mouth. Caused by herpes simplex virus and recurs periodically.",
+    severity: 'mild'
+  },
+  {
+    name: "Leukoplakia",
+    description: "White patches on gums, tongue, or cheek lining that cannot be scraped off. Potentially precancerous condition.",
+    severity: 'moderate'
+  },
+  {
+    name: "Bruxism (Teeth Grinding)",
+    description: "Unconscious clenching or grinding of teeth, often during sleep. Can cause tooth damage, jaw pain, and headaches.",
+    severity: 'moderate'
+  }
+]
+
+const MOUTH_SYMPTOMS: Symptom[] = [
+  {
+    name: "Toothache",
+    description: "Pain in or around a tooth, ranging from mild sensitivity to severe throbbing. Often indicates decay or infection.",
+    commonality: 'common'
+  },
+  {
+    name: "Bleeding Gums",
+    description: "Blood when brushing, flossing, or eating. A common sign of gingivitis or periodontal disease.",
+    commonality: 'common'
+  },
+  {
+    name: "Bad Breath (Halitosis)",
+    description: "Persistent unpleasant odor from the mouth despite oral hygiene. Can indicate gum disease, decay, or other conditions.",
+    commonality: 'common'
+  },
+  {
+    name: "Tooth Sensitivity",
+    description: "Sharp pain or discomfort when consuming hot, cold, sweet, or acidic foods and drinks.",
+    commonality: 'common'
+  },
+  {
+    name: "Mouth Sores",
+    description: "Painful ulcers or lesions in the mouth, on the gums, tongue, or inner cheeks. Various causes from canker sores to infections.",
+    commonality: 'common'
+  },
+  {
+    name: "Swollen Gums",
+    description: "Puffy, red, or tender gum tissue. Often accompanies gum disease, infection, or irritation.",
+    commonality: 'common'
+  },
+  {
+    name: "Jaw Pain",
+    description: "Discomfort in the jaw joint or muscles, often related to TMJ disorder, grinding, or dental problems.",
+    commonality: 'common'
+  },
+  {
+    name: "Dry Mouth (Xerostomia)",
+    description: "Insufficient saliva production causing sticky, dry feeling. Can increase risk of decay and gum disease.",
+    commonality: 'common'
+  },
+  {
+    name: "Loose Teeth",
+    description: "Teeth that move or feel unstable. In adults, often indicates advanced gum disease or bone loss.",
+    commonality: 'uncommon'
+  },
+  {
+    name: "Difficulty Chewing",
+    description: "Pain or inability to chew properly due to dental problems, jaw issues, or missing teeth.",
+    commonality: 'uncommon'
+  }
+]
+
+const MOUTH_PROCEDURES: Procedure[] = [
+  {
+    name: "Dental Examination",
+    description: "Comprehensive evaluation of teeth, gums, and oral tissues including visual inspection and probing for decay and gum pockets.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Dental X-rays",
+    description: "Radiographic imaging to detect cavities, bone loss, impacted teeth, and other problems not visible during examination.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Professional Cleaning (Prophylaxis)",
+    description: "Removal of plaque, tartar, and stains from teeth by a dental hygienist, including polishing.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Root Canal Treatment",
+    description: "Removal of infected pulp tissue from inside a tooth, followed by cleaning, shaping, and filling the root canals.",
+    type: 'surgical'
+  },
+  {
+    name: "Tooth Extraction",
+    description: "Surgical removal of a tooth that is severely decayed, damaged, or causing crowding.",
+    type: 'surgical'
+  },
+  {
+    name: "Dental Filling",
+    description: "Restoration of a decayed tooth using materials like composite resin, amalgam, or ceramic to restore function.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Dental Crown",
+    description: "Cap placed over a damaged tooth to restore its shape, size, strength, and appearance.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Periodontal Scaling and Root Planing",
+    description: "Deep cleaning below the gumline to remove tartar and bacteria from tooth roots in gum disease treatment.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Dental Implant Surgery",
+    description: "Surgical placement of titanium posts into the jawbone to serve as artificial tooth roots for replacement teeth.",
+    type: 'surgical'
+  },
+  {
+    name: "Oral Biopsy",
+    description: "Removal of tissue sample from the mouth for laboratory analysis to diagnose oral lesions or suspected cancer.",
+    type: 'diagnostic'
+  }
+]
+
+const MOUTH_TREATMENTS: Treatment[] = [
+  {
+    name: "Fluoride Treatment",
+    description: "Application of fluoride to teeth to strengthen enamel and prevent decay. Available as gels, varnishes, or rinses.",
+    type: 'therapy'
+  },
+  {
+    name: "Dental Sealants",
+    description: "Thin protective coating applied to chewing surfaces of back teeth to prevent decay in grooves and pits.",
+    type: 'therapy'
+  },
+  {
+    name: "Orthodontic Braces",
+    description: "Devices that gradually move teeth into proper alignment using brackets, wires, or clear aligners.",
+    type: 'device'
+  },
+  {
+    name: "Night Guard",
+    description: "Custom-fitted oral appliance worn during sleep to protect teeth from grinding and clenching damage.",
+    type: 'device'
+  },
+  {
+    name: "Prescription Mouthwash",
+    description: "Medicated rinses containing chlorhexidine or fluoride to treat gum disease or prevent decay.",
+    type: 'medication'
+  },
+  {
+    name: "Antibiotics for Dental Infections",
+    description: "Oral or topical antibiotics prescribed to treat bacterial infections of teeth, gums, or surrounding tissues.",
+    type: 'medication'
+  },
+  {
+    name: "Dental Bridge",
+    description: "Fixed prosthetic device that replaces missing teeth by anchoring to adjacent natural teeth.",
+    type: 'device'
+  },
+  {
+    name: "Dentures",
+    description: "Removable replacements for missing teeth and surrounding tissues. Can be complete or partial.",
+    type: 'device'
+  },
+  {
+    name: "Gum Graft Surgery",
+    description: "Surgical procedure to cover exposed tooth roots by transplanting gum tissue from another area.",
+    type: 'therapy'
+  },
+  {
+    name: "Pain Management",
+    description: "Use of analgesics, anti-inflammatories, or local anesthetics to control dental pain during and after procedures.",
+    type: 'medication'
+  }
+]
+
+const MOUTH_NUTRITION: NutritionItem[] = [
+  {
+    name: "Cheese",
+    benefit: "Contains calcium and casein that strengthen tooth enamel and neutralize acids in the mouth.",
+    category: 'protein'
+  },
+  {
+    name: "Leafy Greens",
+    benefit: "High in calcium, folic acid, and vitamins that promote oral health and gum tissue repair.",
+    category: 'vegetable'
+  },
+  {
+    name: "Apples",
+    benefit: "Fibrous texture stimulates saliva production and helps clean teeth naturally while chewing.",
+    category: 'fruit'
+  },
+  {
+    name: "Carrots",
+    benefit: "Crunchy texture acts as a natural toothbrush; rich in vitamin A for healthy tooth enamel.",
+    category: 'vegetable'
+  },
+  {
+    name: "Celery",
+    benefit: "Fibrous strands clean between teeth; high water content stimulates saliva to wash away bacteria.",
+    category: 'vegetable'
+  },
+  {
+    name: "Almonds",
+    benefit: "Good source of calcium and protein with low sugar content, supporting tooth strength.",
+    category: 'fat'
+  },
+  {
+    name: "Yogurt",
+    benefit: "Probiotics support healthy oral bacteria balance; calcium strengthens teeth and bones.",
+    category: 'protein'
+  },
+  {
+    name: "Salmon",
+    benefit: "Vitamin D helps the body absorb calcium; omega-3s reduce inflammation in gum tissue.",
+    category: 'protein'
+  },
+  {
+    name: "Green Tea",
+    benefit: "Polyphenols suppress bacteria that cause cavities and gum disease; reduces bad breath.",
+    category: 'other'
+  },
+  {
+    name: "Cranberries",
+    benefit: "Contain compounds that prevent bacteria from sticking to teeth and forming plaque.",
+    category: 'fruit'
+  },
+  {
+    name: "Strawberries",
+    benefit: "Contain malic acid which naturally whitens teeth; vitamin C supports gum health.",
+    category: 'fruit'
+  },
+  {
+    name: "Water",
+    benefit: "Rinses away food particles and bacteria; fluoridated water helps prevent tooth decay.",
+    category: 'other'
+  },
+  {
+    name: "Milk",
+    benefit: "Rich in calcium and phosphorus that remineralize tooth enamel; protein casein protects teeth.",
+    category: 'protein'
+  },
+  {
+    name: "Shiitake Mushrooms",
+    benefit: "Contain lentinan which inhibits growth of bacteria that cause tooth decay and gum disease.",
+    category: 'vegetable'
+  },
+  {
+    name: "Onions",
+    benefit: "Raw onions have antibacterial properties that kill harmful bacteria in the mouth.",
+    category: 'vegetable'
+  },
+  {
+    name: "Raisins",
+    benefit: "Contain phytochemicals that fight bacteria causing cavities and gum disease, despite sweetness.",
+    category: 'fruit'
+  },
+  {
+    name: "Whole Grains",
+    benefit: "Complex carbohydrates don't break down into sugars quickly; B vitamins support gum health.",
+    category: 'grain'
+  },
+  {
+    name: "Kiwi",
+    benefit: "Highest vitamin C content of common fruits; essential for collagen production in gum tissue.",
+    category: 'fruit'
+  },
+  {
+    name: "Sesame Seeds",
+    benefit: "Help scrub plaque from teeth; rich in calcium for tooth and bone strength.",
+    category: 'other'
+  },
+  {
+    name: "Ginger",
+    benefit: "Natural anti-inflammatory that promotes healthy gum tissue and freshens breath.",
+    category: 'other'
+  }
+]
+
+const MOUTH_CONTENT: BodyPartContent = {
+  name: "Teeth",
+  description: "The mouth is the gateway to the digestive system, serving essential functions in eating, speaking, and breathing. Adults have 32 permanent teeth, each with a crown covered in enamel (the hardest substance in the body) and roots anchored in the jawbone. The gums (gingiva) are soft tissues that cover and protect the tooth roots and jawbone. The mouth contains over 700 species of bacteria, most beneficial for digestion. Saliva, produced by three pairs of major salivary glands, aids digestion, protects teeth, and fights infection. The tongue, covered with taste buds, helps with chewing, swallowing, and speech articulation.",
+  image: "/images/mouth.png",
+  relatedSystems: ["Digestive", "Immune"],
+  diseases: MOUTH_DISEASES,
+  symptoms: MOUTH_SYMPTOMS,
+  procedures: MOUTH_PROCEDURES,
+  treatments: MOUTH_TREATMENTS,
+  nutrition: MOUTH_NUTRITION
+}
+
+// ============================================================
+// PITUITARY GLAND CONTENT
+// ============================================================
+
+const PITUITARY_DISEASES: Disease[] = [
+  {
+    name: "Pituitary Adenoma",
+    description: "Benign tumor of the pituitary gland that can cause hormone overproduction or underproduction, and may compress nearby structures.",
+    severity: 'moderate'
+  },
+  {
+    name: "Hypopituitarism",
+    description: "Underactive pituitary gland that doesn't produce enough of one or more hormones, affecting growth, metabolism, and reproduction.",
+    severity: 'severe'
+  },
+  {
+    name: "Acromegaly",
+    description: "Excess growth hormone production in adults causing enlarged hands, feet, and facial features, along with organ enlargement.",
+    severity: 'severe'
+  },
+  {
+    name: "Gigantism",
+    description: "Excess growth hormone in children before bone growth plates close, causing abnormally tall stature and health complications.",
+    severity: 'severe'
+  },
+  {
+    name: "Cushing's Disease",
+    description: "Pituitary tumor causing excess ACTH production, leading to high cortisol levels with weight gain, high blood pressure, and mood changes.",
+    severity: 'severe'
+  },
+  {
+    name: "Prolactinoma",
+    description: "Most common pituitary tumor that overproduces prolactin, causing breast milk production, infertility, and sexual dysfunction.",
+    severity: 'moderate'
+  },
+  {
+    name: "Diabetes Insipidus",
+    description: "Deficiency of antidiuretic hormone (ADH) causing excessive thirst and urination of large amounts of dilute urine.",
+    severity: 'moderate'
+  },
+  {
+    name: "Empty Sella Syndrome",
+    description: "Condition where the pituitary gland shrinks or becomes flattened, sometimes causing hormonal deficiencies.",
+    severity: 'mild'
+  },
+  {
+    name: "Sheehan's Syndrome",
+    description: "Pituitary gland damage due to severe blood loss during childbirth, causing hormone deficiencies.",
+    severity: 'severe'
+  },
+  {
+    name: "Pituitary Apoplexy",
+    description: "Medical emergency caused by sudden bleeding into or loss of blood supply to the pituitary gland, causing severe headache and vision loss.",
+    severity: 'severe'
+  }
+]
+
+const PITUITARY_SYMPTOMS: Symptom[] = [
+  {
+    name: "Headaches",
+    description: "Persistent or severe headaches, especially if caused by a pituitary tumor pressing on surrounding structures.",
+    commonality: 'common'
+  },
+  {
+    name: "Vision Problems",
+    description: "Blurred vision, double vision, or loss of peripheral vision due to tumor pressure on the optic nerves.",
+    commonality: 'common'
+  },
+  {
+    name: "Fatigue",
+    description: "Persistent tiredness and lack of energy, often related to cortisol or thyroid hormone deficiency.",
+    commonality: 'common'
+  },
+  {
+    name: "Unexplained Weight Changes",
+    description: "Weight gain or loss without diet changes, indicating hormonal imbalances affecting metabolism.",
+    commonality: 'common'
+  },
+  {
+    name: "Irregular Menstruation",
+    description: "Absent, irregular, or unusually heavy periods in women due to reproductive hormone imbalances.",
+    commonality: 'common'
+  },
+  {
+    name: "Sexual Dysfunction",
+    description: "Decreased libido, erectile dysfunction, or infertility related to gonadotropin hormone deficiency.",
+    commonality: 'common'
+  },
+  {
+    name: "Excessive Thirst and Urination",
+    description: "Drinking large amounts of water and frequent urination, characteristic of diabetes insipidus.",
+    commonality: 'uncommon'
+  },
+  {
+    name: "Mood Changes",
+    description: "Depression, anxiety, or irritability that can result from hormonal imbalances.",
+    commonality: 'common'
+  },
+  {
+    name: "Growth Abnormalities",
+    description: "Stunted growth in children or enlarged features in adults indicating growth hormone disorders.",
+    commonality: 'uncommon'
+  },
+  {
+    name: "Milk Production (Non-Pregnant)",
+    description: "Unexpected breast milk production in women who aren't pregnant or nursing, or in men.",
+    commonality: 'uncommon'
+  }
+]
+
+const PITUITARY_PROCEDURES: Procedure[] = [
+  {
+    name: "MRI of Pituitary",
+    description: "High-resolution magnetic resonance imaging to visualize pituitary gland structure and detect tumors.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Hormone Blood Tests",
+    description: "Blood tests measuring levels of pituitary hormones and target gland hormones to assess function.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Visual Field Testing",
+    description: "Examination to detect vision loss caused by pituitary tumors pressing on optic nerves.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Stimulation Tests",
+    description: "Tests using medications to stimulate hormone release, evaluating pituitary reserve function.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Transsphenoidal Surgery",
+    description: "Minimally invasive surgery through the nose and sinuses to remove pituitary tumors.",
+    type: 'surgical'
+  },
+  {
+    name: "Craniotomy",
+    description: "Open brain surgery to access and remove large or complex pituitary tumors through the skull.",
+    type: 'surgical'
+  },
+  {
+    name: "Stereotactic Radiosurgery",
+    description: "Precisely targeted radiation beams to treat pituitary tumors while minimizing damage to surrounding tissue.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Petrosal Sinus Sampling",
+    description: "Catheter procedure to sample blood from veins near the pituitary to localize hormone-producing tumors.",
+    type: 'diagnostic'
+  },
+  {
+    name: "CT Scan of Sella",
+    description: "Computed tomography of the sella turcica (bony structure housing the pituitary) to assess bone involvement.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Water Deprivation Test",
+    description: "Controlled test restricting fluids to diagnose diabetes insipidus by measuring urine concentration.",
+    type: 'diagnostic'
+  }
+]
+
+const PITUITARY_TREATMENTS: Treatment[] = [
+  {
+    name: "Hormone Replacement Therapy",
+    description: "Medications to replace deficient hormones such as cortisol, thyroid hormone, growth hormone, or sex hormones.",
+    type: 'medication'
+  },
+  {
+    name: "Dopamine Agonists",
+    description: "Medications like cabergoline or bromocriptine that shrink prolactin-producing tumors and normalize levels.",
+    type: 'medication'
+  },
+  {
+    name: "Somatostatin Analogs",
+    description: "Drugs that reduce growth hormone production in acromegaly, such as octreotide or lanreotide.",
+    type: 'medication'
+  },
+  {
+    name: "Growth Hormone Therapy",
+    description: "Synthetic growth hormone injections for children and adults with growth hormone deficiency.",
+    type: 'medication'
+  },
+  {
+    name: "Desmopressin (DDAVP)",
+    description: "Synthetic antidiuretic hormone to treat diabetes insipidus by reducing urine production.",
+    type: 'medication'
+  },
+  {
+    name: "Radiation Therapy",
+    description: "Conventional or stereotactic radiation to control pituitary tumor growth when surgery isn't fully effective.",
+    type: 'therapy'
+  },
+  {
+    name: "Testosterone Replacement",
+    description: "Hormone therapy for men with pituitary-related testosterone deficiency affecting energy and sexual function.",
+    type: 'medication'
+  },
+  {
+    name: "Estrogen/Progesterone Therapy",
+    description: "Hormone replacement for women with pituitary-related deficiency affecting menstruation and bone health.",
+    type: 'medication'
+  },
+  {
+    name: "Cortisol-Lowering Medications",
+    description: "Drugs like ketoconazole or metyrapone to reduce cortisol levels in Cushing's disease.",
+    type: 'medication'
+  },
+  {
+    name: "Watchful Waiting",
+    description: "Regular monitoring with MRI and hormone tests for small, non-functioning pituitary tumors.",
+    type: 'lifestyle'
+  }
+]
+
+const PITUITARY_NUTRITION: NutritionItem[] = [
+  {
+    name: "Salmon",
+    benefit: "Omega-3 fatty acids support hormone production and reduce inflammation affecting gland function.",
+    category: 'protein'
+  },
+  {
+    name: "Eggs",
+    benefit: "Rich in protein and choline, essential building blocks for hormone synthesis.",
+    category: 'protein'
+  },
+  {
+    name: "Leafy Greens",
+    benefit: "Provide folate and magnesium that support overall endocrine system function.",
+    category: 'vegetable'
+  },
+  {
+    name: "Brazil Nuts",
+    benefit: "High in selenium, crucial for thyroid hormone conversion influenced by pituitary TSH.",
+    category: 'fat'
+  },
+  {
+    name: "Avocados",
+    benefit: "Healthy fats support hormone production and help maintain stable blood sugar levels.",
+    category: 'fat'
+  },
+  {
+    name: "Sweet Potatoes",
+    benefit: "Complex carbohydrates provide steady energy; vitamin A supports hormone synthesis.",
+    category: 'vegetable'
+  },
+  {
+    name: "Chicken",
+    benefit: "Lean protein provides amino acids necessary for hormone production without excess fat.",
+    category: 'protein'
+  },
+  {
+    name: "Quinoa",
+    benefit: "Complete protein with all essential amino acids needed for hormone synthesis.",
+    category: 'grain'
+  },
+  {
+    name: "Berries",
+    benefit: "Antioxidants protect endocrine tissues from oxidative stress and inflammation.",
+    category: 'fruit'
+  },
+  {
+    name: "Walnuts",
+    benefit: "Contain omega-3s and antioxidants that support brain and endocrine health.",
+    category: 'fat'
+  },
+  {
+    name: "Olive Oil",
+    benefit: "Healthy monounsaturated fats support hormone production and reduce inflammation.",
+    category: 'fat'
+  },
+  {
+    name: "Broccoli",
+    benefit: "Contains compounds that help balance estrogen metabolism regulated by pituitary hormones.",
+    category: 'vegetable'
+  },
+  {
+    name: "Legumes",
+    benefit: "Plant protein and fiber help maintain stable insulin levels, supporting overall hormonal balance.",
+    category: 'protein'
+  },
+  {
+    name: "Pumpkin Seeds",
+    benefit: "Rich in zinc, essential for growth hormone production and immune function.",
+    category: 'other'
+  },
+  {
+    name: "Greek Yogurt",
+    benefit: "Protein and probiotics support nutrient absorption for optimal hormone production.",
+    category: 'protein'
+  },
+  {
+    name: "Turmeric",
+    benefit: "Anti-inflammatory properties support healthy endocrine function and hormone balance.",
+    category: 'other'
+  },
+  {
+    name: "Spinach",
+    benefit: "Iron and B vitamins support energy metabolism and hormone-producing cells.",
+    category: 'vegetable'
+  },
+  {
+    name: "Mushrooms",
+    benefit: "Vitamin D supports calcium metabolism and overall endocrine function.",
+    category: 'vegetable'
+  },
+  {
+    name: "Coconut Oil",
+    benefit: "Medium-chain triglycerides provide quick energy for hormone-producing glands.",
+    category: 'fat'
+  },
+  {
+    name: "Ginger",
+    benefit: "Supports circulation and reduces inflammation in endocrine tissues.",
+    category: 'other'
+  }
+]
+
+const PITUITARY_CONTENT: BodyPartContent = {
+  name: "Pituitary gland",
+  description: "The pituitary gland, often called the 'master gland,' is a pea-sized organ located at the base of the brain, nestled in a bony structure called the sella turcica. Despite its small size, it produces and regulates essential hormones that control growth, metabolism, reproduction, stress response, and water balance. The gland has two main parts: the anterior pituitary (producing growth hormone, prolactin, TSH, ACTH, FSH, and LH) and the posterior pituitary (storing and releasing oxytocin and antidiuretic hormone from the hypothalamus). Connected to the hypothalamus by a stalk, the pituitary acts as the critical link between the nervous and endocrine systems.",
+  image: "/images/pituitary.png",
+  relatedSystems: ["Endocrine", "Nervous"],
+  diseases: PITUITARY_DISEASES,
+  symptoms: PITUITARY_SYMPTOMS,
+  procedures: PITUITARY_PROCEDURES,
+  treatments: PITUITARY_TREATMENTS,
+  nutrition: PITUITARY_NUTRITION
+}
+
+// ============================================================
+// THYROID CONTENT
+// ============================================================
+
+const THYROID_DISEASES: Disease[] = [
+  {
+    name: "Hypothyroidism",
+    description: "Underactive thyroid producing insufficient hormones, causing fatigue, weight gain, cold intolerance, and depression.",
+    severity: 'moderate'
+  },
+  {
+    name: "Hyperthyroidism",
+    description: "Overactive thyroid producing excess hormones, causing weight loss, rapid heartbeat, anxiety, and heat intolerance.",
+    severity: 'moderate'
+  },
+  {
+    name: "Hashimoto's Thyroiditis",
+    description: "Autoimmune disease where the immune system attacks the thyroid, gradually causing hypothyroidism. Most common thyroid disorder.",
+    severity: 'moderate'
+  },
+  {
+    name: "Graves' Disease",
+    description: "Autoimmune disorder causing hyperthyroidism, often with bulging eyes (Graves' ophthalmopathy) and skin changes.",
+    severity: 'severe'
+  },
+  {
+    name: "Thyroid Nodules",
+    description: "Lumps in the thyroid gland that may be solid or fluid-filled. Most are benign but some require evaluation for cancer.",
+    severity: 'mild'
+  },
+  {
+    name: "Thyroid Cancer",
+    description: "Malignant growths in the thyroid, including papillary, follicular, medullary, and anaplastic types. Most are highly treatable.",
+    severity: 'severe'
+  },
+  {
+    name: "Goiter",
+    description: "Enlarged thyroid gland causing visible neck swelling. Can be caused by iodine deficiency, autoimmune disease, or nodules.",
+    severity: 'moderate'
+  },
+  {
+    name: "Thyroiditis",
+    description: "Inflammation of the thyroid gland, which can be caused by autoimmune disease, infection, or medication.",
+    severity: 'moderate'
+  },
+  {
+    name: "Thyroid Storm",
+    description: "Life-threatening condition of severely elevated thyroid hormones causing high fever, rapid heart rate, and altered consciousness.",
+    severity: 'severe'
+  },
+  {
+    name: "Myxedema Coma",
+    description: "Rare, life-threatening complication of severe hypothyroidism causing low body temperature, confusion, and organ failure.",
+    severity: 'severe'
+  }
+]
+
+const THYROID_SYMPTOMS: Symptom[] = [
+  {
+    name: "Fatigue",
+    description: "Persistent tiredness and lack of energy, common in both hypothyroidism (constant) and hyperthyroidism (with weakness).",
+    commonality: 'common'
+  },
+  {
+    name: "Weight Changes",
+    description: "Unexplained weight gain (hypothyroidism) or weight loss despite increased appetite (hyperthyroidism).",
+    commonality: 'common'
+  },
+  {
+    name: "Temperature Sensitivity",
+    description: "Feeling unusually cold (hypothyroidism) or hot and sweaty (hyperthyroidism) regardless of environment.",
+    commonality: 'common'
+  },
+  {
+    name: "Heart Rate Changes",
+    description: "Slow heart rate in hypothyroidism; rapid, irregular, or pounding heartbeat in hyperthyroidism.",
+    commonality: 'common'
+  },
+  {
+    name: "Mood Changes",
+    description: "Depression and mental sluggishness (hypothyroidism) or anxiety, irritability, and nervousness (hyperthyroidism).",
+    commonality: 'common'
+  },
+  {
+    name: "Hair and Skin Changes",
+    description: "Dry skin and hair loss in hypothyroidism; warm, moist skin and fine hair in hyperthyroidism.",
+    commonality: 'common'
+  },
+  {
+    name: "Neck Swelling",
+    description: "Visible enlargement of the thyroid gland (goiter) causing fullness or lump in the front of the neck.",
+    commonality: 'common'
+  },
+  {
+    name: "Menstrual Irregularities",
+    description: "Heavy or irregular periods in hypothyroidism; light or absent periods in hyperthyroidism.",
+    commonality: 'common'
+  },
+  {
+    name: "Muscle Weakness",
+    description: "General weakness and muscle aches, particularly affecting the upper arms and thighs.",
+    commonality: 'common'
+  },
+  {
+    name: "Difficulty Swallowing",
+    description: "Trouble swallowing or feeling of tightness in the throat due to enlarged thyroid or nodules.",
+    commonality: 'uncommon'
+  }
+]
+
+const THYROID_PROCEDURES: Procedure[] = [
+  {
+    name: "Thyroid Function Tests",
+    description: "Blood tests measuring TSH, T3, and T4 hormone levels to assess thyroid function.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Thyroid Ultrasound",
+    description: "Imaging using sound waves to visualize thyroid structure, detect nodules, and guide biopsies.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Fine Needle Aspiration Biopsy",
+    description: "Using a thin needle to extract cells from thyroid nodules for microscopic examination to rule out cancer.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Radioactive Iodine Uptake Scan",
+    description: "Nuclear medicine test measuring how much radioactive iodine the thyroid absorbs to evaluate function.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Thyroidectomy",
+    description: "Surgical removal of all or part of the thyroid gland for cancer, large goiter, or hyperthyroidism.",
+    type: 'surgical'
+  },
+  {
+    name: "Radioactive Iodine Therapy",
+    description: "Oral radioactive iodine that destroys overactive thyroid tissue or remaining cancer cells after surgery.",
+    type: 'therapeutic'
+  },
+  {
+    name: "Thyroid Antibody Tests",
+    description: "Blood tests detecting antibodies associated with autoimmune thyroid diseases like Hashimoto's or Graves'.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Lobectomy",
+    description: "Surgical removal of one lobe of the thyroid gland, often for isolated nodules or small cancers.",
+    type: 'surgical'
+  },
+  {
+    name: "CT/MRI of Thyroid",
+    description: "Advanced imaging to evaluate thyroid size, position, and relationship to surrounding structures.",
+    type: 'diagnostic'
+  },
+  {
+    name: "Thyroid Hormone Suppression Test",
+    description: "Evaluating whether thyroid nodules respond to TSH suppression to help determine malignancy risk.",
+    type: 'diagnostic'
+  }
+]
+
+const THYROID_TREATMENTS: Treatment[] = [
+  {
+    name: "Levothyroxine (Synthroid)",
+    description: "Synthetic thyroid hormone replacement for hypothyroidism, taken daily to normalize hormone levels.",
+    type: 'medication'
+  },
+  {
+    name: "Antithyroid Medications",
+    description: "Drugs like methimazole or propylthiouracil that reduce thyroid hormone production in hyperthyroidism.",
+    type: 'medication'
+  },
+  {
+    name: "Beta Blockers",
+    description: "Medications to control rapid heart rate, tremor, and anxiety symptoms of hyperthyroidism.",
+    type: 'medication'
+  },
+  {
+    name: "Radioactive Iodine Treatment",
+    description: "Oral radioactive iodine that permanently reduces thyroid hormone production in hyperthyroidism.",
+    type: 'therapy'
+  },
+  {
+    name: "Selenium Supplementation",
+    description: "Supplements that may help reduce thyroid antibodies in autoimmune thyroid disease.",
+    type: 'lifestyle'
+  },
+  {
+    name: "Thyroid Surgery",
+    description: "Removal of thyroid tissue to treat cancer, large goiter, or hyperthyroidism unresponsive to other treatments.",
+    type: 'therapy'
+  },
+  {
+    name: "TSH Suppression Therapy",
+    description: "Higher doses of thyroid hormone to suppress TSH and slow growth of thyroid cancer cells.",
+    type: 'medication'
+  },
+  {
+    name: "Calcium and Vitamin D",
+    description: "Supplements often needed after thyroid surgery to maintain bone health and prevent hypocalcemia.",
+    type: 'lifestyle'
+  },
+  {
+    name: "External Beam Radiation",
+    description: "Targeted radiation therapy for aggressive thyroid cancers that don't respond to radioactive iodine.",
+    type: 'therapy'
+  },
+  {
+    name: "Targeted Drug Therapy",
+    description: "Newer medications targeting specific cancer cell mutations in advanced or resistant thyroid cancer.",
+    type: 'medication'
+  }
+]
+
+const THYROID_NUTRITION: NutritionItem[] = [
+  {
+    name: "Seaweed",
+    benefit: "Natural source of iodine essential for thyroid hormone production. Important for those with iodine deficiency.",
+    category: 'vegetable'
+  },
+  {
+    name: "Brazil Nuts",
+    benefit: "Richest food source of selenium, crucial for converting T4 to active T3 thyroid hormone.",
+    category: 'fat'
+  },
+  {
+    name: "Salmon",
+    benefit: "Provides omega-3s that reduce thyroid inflammation and selenium for hormone conversion.",
+    category: 'protein'
+  },
+  {
+    name: "Eggs",
+    benefit: "Contain both iodine and selenium, two key nutrients for healthy thyroid function.",
+    category: 'protein'
+  },
+  {
+    name: "Greek Yogurt",
+    benefit: "Good source of iodine and protein; probiotics support gut health affecting thyroid function.",
+    category: 'protein'
+  },
+  {
+    name: "Chicken",
+    benefit: "Provides zinc necessary for thyroid hormone production and immune function.",
+    category: 'protein'
+  },
+  {
+    name: "Shellfish",
+    benefit: "Excellent source of zinc and iodine, both critical for thyroid health.",
+    category: 'protein'
+  },
+  {
+    name: "Berries",
+    benefit: "Antioxidants protect the thyroid gland from oxidative damage and inflammation.",
+    category: 'fruit'
+  },
+  {
+    name: "Spinach",
+    benefit: "Provides iron, important because thyroid disorders can affect iron metabolism.",
+    category: 'vegetable'
+  },
+  {
+    name: "Nuts",
+    benefit: "Healthy fats and minerals support overall endocrine function and hormone production.",
+    category: 'fat'
+  },
+  {
+    name: "Beans",
+    benefit: "Complex carbohydrates provide sustained energy; zinc supports thyroid function.",
+    category: 'protein'
+  },
+  {
+    name: "Sardines",
+    benefit: "Rich in omega-3s, selenium, and vitamin D, all supporting thyroid health.",
+    category: 'protein'
+  },
+  {
+    name: "Pumpkin Seeds",
+    benefit: "High in zinc, which is essential for thyroid hormone synthesis.",
+    category: 'other'
+  },
+  {
+    name: "Quinoa",
+    benefit: "Gluten-free grain providing protein and minerals; helpful for those with Hashimoto's avoiding gluten.",
+    category: 'grain'
+  },
+  {
+    name: "Olive Oil",
+    benefit: "Healthy fats support hormone production and reduce inflammation in autoimmune thyroid disease.",
+    category: 'fat'
+  },
+  {
+    name: "Bone Broth",
+    benefit: "Supports gut health, which is closely linked to thyroid function and autoimmune conditions.",
+    category: 'protein'
+  },
+  {
+    name: "Turmeric",
+    benefit: "Anti-inflammatory properties help manage autoimmune thyroid inflammation.",
+    category: 'other'
+  },
+  {
+    name: "Coconut Oil",
+    benefit: "Medium-chain fatty acids support metabolism and may help with hypothyroid symptoms.",
+    category: 'fat'
+  },
+  {
+    name: "Fermented Foods",
+    benefit: "Probiotics support gut health, important for thyroid hormone conversion and immune regulation.",
+    category: 'other'
+  },
+  {
+    name: "Avocados",
+    benefit: "Healthy fats and tyrosine support thyroid hormone production and overall gland health.",
+    category: 'fat'
+  }
+]
+
+const THYROID_CONTENT: BodyPartContent = {
+  name: "Thyroid",
+  description: "The thyroid is a butterfly-shaped gland located in the front of the neck, just below the Adam's apple. Weighing only about 20 grams, it produces thyroid hormones (T3 and T4) that regulate the body's metabolism, affecting virtually every cell and organ. The thyroid controls how fast the body burns calories, heart rate, body temperature, and protein synthesis. It requires iodine from the diet to produce hormones and is regulated by thyroid-stimulating hormone (TSH) from the pituitary gland. The thyroid also produces calcitonin, which helps regulate blood calcium levels. Thyroid disorders are among the most common endocrine conditions, affecting an estimated 20 million Americans.",
+  image: "/images/thyroid.png",
+  relatedSystems: ["Endocrine", "Cardiovascular"],
+  diseases: THYROID_DISEASES,
+  symptoms: THYROID_SYMPTOMS,
+  procedures: THYROID_PROCEDURES,
+  treatments: THYROID_TREATMENTS,
+  nutrition: THYROID_NUTRITION
+}
+
 // Map of body part names to their content
 export const BODY_PART_CONTENT: Record<string, BodyPartContent> = {
   "Brain": BRAIN_CONTENT,
   "Eyes": EYES_CONTENT,
   "Ears": EARS_CONTENT,
-  "Nose": NOSE_CONTENT
+  "Nose": NOSE_CONTENT,
+  "Teeth": MOUTH_CONTENT,
+  "Pituitary gland": PITUITARY_CONTENT,
+  "Thyroid": THYROID_CONTENT
 }
 
 // Helper function to get content for a body part
